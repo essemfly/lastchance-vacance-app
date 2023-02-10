@@ -7,8 +7,8 @@ import '../search_properties/search_properties_widget.dart';
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import '../../utils.dart';
 
 class HomePageMAINWidget extends StatefulWidget {
   const HomePageMAINWidget({Key? key}) : super(key: key);
@@ -306,7 +306,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                       context,
                                       MaterialPageRoute(
                                         builder: (context) =>
-                                            PropertyDetailsWidget(
+                                            ProductDetailsWidget(
                                           propertyRef: valueOrDefault<int>(
                                             ProductsListCall.productId(
                                               listViewProductsListResponse
