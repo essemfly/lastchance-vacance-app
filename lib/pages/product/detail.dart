@@ -145,7 +145,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
               width: 50,
               height: 50,
               child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+                color: Constants.primaryColor,
               ),
             ),
           );
@@ -153,7 +153,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
         final ProductDetailsProductDetailResponse = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
-          backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+          backgroundColor: Constants.secondaryBackground,
           body: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
@@ -290,7 +290,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   ProductDetailsProductDetailResponse.jsonBody,
                                   r'''$.title''',
                                 ).toString(),
-                                style: FlutterFlowTheme.of(context).title1,
+                                style: Constants.title1,
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation1']!),
                             ),
@@ -308,14 +308,12 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   ProductDetailsProductDetailResponse.jsonBody,
                                   r'''$.writtenAddr''',
                                 ).toString(),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText2
-                                    .override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Color(0xFF8B97A2),
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.normal,
-                                    ),
+                                style: Constants.bodyText2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Color(0xFF8B97A2),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.normal,
+                                ),
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation2']!),
                             ),
@@ -329,15 +327,12 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           children: [
                             Text(
                               '상세 설명',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText2
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: Constants.bodyText2.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Constants.primaryText,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ).animateOnPageLoad(
@@ -358,14 +353,12 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                         .jsonBody,
                                     r'''$.desc''',
                                   ).toString(),
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyText2
-                                      .override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF8B97A2),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.normal,
-                                      ),
+                                  style: Constants.bodyText2.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Color(0xFF8B97A2),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.normal,
+                                  ),
                                 ).animateOnPageLoad(
                                     animationsMap['textOnPageLoadAnimation3']!),
                               ),
@@ -380,15 +373,12 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           children: [
                             Text(
                               '숙박업소 정보',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText2
-                                  .override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                              style: Constants.bodyText2.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Constants.primaryText,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ],
                         ).animateOnPageLoad(
@@ -401,7 +391,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
               Container(
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: FlutterFlowTheme.of(context).primaryText,
+                  color: Constants.primaryText,
                   boxShadow: [
                     BoxShadow(
                       blurRadius: 4,
@@ -438,17 +428,13 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 options: FFButtonOptions(
                                   width: 130,
                                   height: 50,
-                                  color: FlutterFlowTheme.of(context)
-                                      .tertiaryColor,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryColor,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                  color: Constants.tertiaryColor,
+                                  textStyle: Constants.subtitle2.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Constants.secondaryColor,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                   elevation: 3,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,
@@ -473,16 +459,13 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 options: FFButtonOptions(
                                   width: 130,
                                   height: 50,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Colors.white,
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                  color: Constants.primaryColor,
+                                  textStyle: Constants.subtitle2.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                   elevation: 3,
                                   borderSide: BorderSide(
                                     color: Colors.transparent,

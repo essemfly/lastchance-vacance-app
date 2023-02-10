@@ -1,3 +1,5 @@
+import 'package:handover_app/constants.dart';
+
 import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
@@ -92,13 +94,12 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: Text(
                             '다른 사람들이 못가게 된 \n호텔, 펜션, 리조트 등의 숙박권을  양도받아\n바캉스를 떠나요',
-                            style: FlutterFlowTheme.of(context)
-                                .subtitle2
-                                .override(
-                                  fontFamily: 'Urbanist',
-                                  color: FlutterFlowTheme.of(context).grayIcon,
-                                  fontWeight: FontWeight.w300,
-                                ),
+                            style:
+                                FlutterFlowTheme.of(context).subtitle2.override(
+                                      fontFamily: 'Urbanist',
+                                      color: Constants.grayIcon,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                           ),
                         ),
                       ],
