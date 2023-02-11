@@ -1,14 +1,11 @@
+import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
 
-import '../backend/api_requests/api_calls.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
-import '../flutter_flow/flutter_flow_widgets.dart';
-import '../property_details/property_details_widget.dart';
-import '../search_properties/search_properties_widget.dart';
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:handover_app/pages/home/search_properties_widget.dart';
+import 'package:handover_app/pages/product/product_detail.dart';
 import 'package:provider/provider.dart';
 import '../../utils.dart';
 
@@ -42,7 +39,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Constants.primaryBackground,
       body: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -51,7 +48,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
               width: double.infinity,
               height: 250,
               decoration: BoxDecoration(
-                color: FlutterFlowTheme.of(context).dark600,
+                color: Constants.dark600,
                 boxShadow: [
                   BoxShadow(
                     blurRadius: 3,
@@ -74,11 +71,10 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                           child: Text(
                             'Last Chance Vacance',
-                            style: FlutterFlowTheme.of(context).title1.override(
-                                  fontFamily: 'Urbanist',
-                                  color: FlutterFlowTheme.of(context)
-                                      .tertiaryColor,
-                                ),
+                            style: CustomTypography.title1.override(
+                              fontFamily: 'Urbanist',
+                              color: Constants.tertiaryColor,
+                            ),
                           ),
                         ),
                       ],
@@ -94,12 +90,11 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                           padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: Text(
                             '다른 사람들이 못가게 된 \n호텔, 펜션, 리조트 등의 숙박권을  양도받아\n바캉스를 떠나요',
-                            style:
-                                FlutterFlowTheme.of(context).subtitle2.override(
-                                      fontFamily: 'Urbanist',
-                                      color: Constants.grayIcon,
-                                      fontWeight: FontWeight.w300,
-                                    ),
+                            style: CustomTypography.subtitle2.override(
+                              fontFamily: 'Urbanist',
+                              color: Constants.grayIcon,
+                              fontWeight: FontWeight.w300,
+                            ),
                           ),
                         ),
                       ],
@@ -111,7 +106,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                       width: double.infinity,
                       height: 50,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).primaryBackground,
+                        color: Constants.primaryBackground,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       alignment: AlignmentDirectional(0, 0),
@@ -127,13 +122,11 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                 obscureText: false,
                                 decoration: InputDecoration(
                                   labelText: '지역, 호텔, 리조트 명',
-                                  labelStyle: FlutterFlowTheme.of(context)
-                                      .bodyText1
-                                      .override(
-                                        fontFamily: 'Urbanist',
-                                        color: FlutterFlowTheme.of(context)
-                                            .grayIcon,
-                                      ),
+                                  labelStyle:
+                                      CustomTypography.bodyText1.override(
+                                    fontFamily: 'Urbanist',
+                                    color: Constants.grayIcon,
+                                  ),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                       color: Color(0x00000000),
@@ -164,16 +157,13 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                   ),
                                   prefixIcon: Icon(
                                     Icons.search_sharp,
-                                    color:
-                                        FlutterFlowTheme.of(context).grayIcon,
+                                    color: Constants.grayIcon,
                                   ),
                                 ),
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyText1
-                                    .override(
-                                      fontFamily: 'Urbanist',
-                                      color: Color(0xFF5E616A),
-                                    ),
+                                style: CustomTypography.bodyText1.override(
+                                  fontFamily: 'Urbanist',
+                                  color: Color(0xFF5E616A),
+                                ),
                               ),
                             ),
                           ),
@@ -195,14 +185,11 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                               options: FFButtonOptions(
                                 width: 100,
                                 height: 40,
-                                color:
-                                    FlutterFlowTheme.of(context).primaryColor,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .subtitle2
-                                    .override(
-                                      fontFamily: 'Urbanist',
-                                      color: Colors.white,
-                                    ),
+                                color: Constants.primaryColor,
+                                textStyle: CustomTypography.subtitle2.override(
+                                  fontFamily: 'Urbanist',
+                                  color: Colors.white,
+                                ),
                                 elevation: 2,
                                 borderSide: BorderSide(
                                   color: Colors.transparent,
@@ -228,13 +215,10 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                             child: Text(
                               '현재 135개의 게시물이 양도받을 주인을 기다리고 있습니다.',
                               textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyText2
-                                  .override(
-                                    fontFamily: 'Urbanist',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryColor,
-                                  ),
+                              style: CustomTypography.bodyText2.override(
+                                fontFamily: 'Urbanist',
+                                color: Constants.secondaryColor,
+                              ),
                             ),
                           ),
                         ),
@@ -258,7 +242,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                         width: 50,
                         height: 50,
                         child: CircularProgressIndicator(
-                          color: FlutterFlowTheme.of(context).primaryColor,
+                          color: Constants.primaryColor,
                         ),
                       ),
                     );
@@ -290,8 +274,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                               child: Container(
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  color: Constants.secondaryBackground,
                                   boxShadow: [
                                     BoxShadow(
                                       blurRadius: 4,
@@ -363,9 +346,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                                       maxChars: 36,
                                                       replacement: '…',
                                                     ),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .title3,
+                                                style: CustomTypography.title3,
                                               ),
                                             ),
                                           ],
@@ -389,8 +370,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                                       replacement: '…',
                                                     ),
                                                 style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyText1,
+                                                    CustomTypography.bodyText1,
                                               ),
                                             ),
                                           ],

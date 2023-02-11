@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/app/components/bottom_nav_bar.dart';
-import '../index.dart';
+import 'package:handover_app/pages/home/home_page.dart';
+import 'package:handover_app/pages/my/my_page.dart';
+import 'package:handover_app/pages/settings/settings_page.dart';
 
 class NavBarPage extends StatefulWidget {
   NavBarPage({Key? key, this.initialPage, this.page}) : super(key: key);

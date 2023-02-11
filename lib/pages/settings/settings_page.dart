@@ -1,6 +1,6 @@
+import 'package:handover_app/constants.dart';
+
 import '../../components/flutter_flow_icon_button.dart';
-import '../flutter_flow/flutter_flow_theme.dart';
-import '../flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -28,9 +28,9 @@ class _SettingsWidgetState extends State<SettingsWidget> {
 
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+      backgroundColor: Constants.primaryBackground,
       appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: Constants.secondaryBackground,
         automaticallyImplyLeading: false,
         leading: FlutterFlowIconButton(
           borderColor: Colors.transparent,
@@ -39,7 +39,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           buttonSize: 60,
           icon: Icon(
             Icons.arrow_back_rounded,
-            color: FlutterFlowTheme.of(context).primaryText,
+            color: Constants.primaryText,
             size: 30,
           ),
           onPressed: () async {
@@ -48,7 +48,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
         ),
         title: Text(
           '서비스 설정',
-          style: FlutterFlowTheme.of(context).subtitle2,
+          style: CustomTypography.subtitle2,
         ),
         actions: [],
         centerTitle: true,
@@ -66,11 +66,11 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 child: Container(
                   width: double.infinity,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Constants.secondaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 0,
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
+                        color: Constants.tertiaryColor,
                         offset: Offset(0, 1),
                       )
                     ],
@@ -81,7 +81,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                 child: Text(
                   '라스트 찬스 바캉스',
-                  style: FlutterFlowTheme.of(context).subtitle2,
+                  style: CustomTypography.subtitle2,
                 ),
               ),
               Padding(
@@ -90,7 +90,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Constants.secondaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 5,
@@ -108,14 +108,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       children: [
                         Icon(
                           Icons.info_outlined,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: Constants.secondaryText,
                           size: 24,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
                             '서비스 소개 ',
-                            style: FlutterFlowTheme.of(context).bodyText2,
+                            style: CustomTypography.bodyText2,
                           ),
                         ),
                         Expanded(
@@ -123,7 +123,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             alignment: AlignmentDirectional(0.9, 0),
                             child: Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Constants.secondaryText,
                               size: 18,
                             ),
                           ),
@@ -139,7 +139,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Constants.secondaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 5,
@@ -157,14 +157,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       children: [
                         Icon(
                           Icons.add_comment,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: Constants.secondaryText,
                           size: 24,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
                             '양도 상품 등록 요청',
-                            style: FlutterFlowTheme.of(context).bodyText2,
+                            style: CustomTypography.bodyText2,
                           ),
                         ),
                         Expanded(
@@ -172,7 +172,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             alignment: AlignmentDirectional(0.9, 0),
                             child: Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Constants.secondaryText,
                               size: 18,
                             ),
                           ),
@@ -188,7 +188,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Constants.secondaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 5,
@@ -206,14 +206,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       children: [
                         Icon(
                           Icons.account_circle_outlined,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: Constants.secondaryText,
                           size: 24,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
                             '동네 인증하기',
-                            style: FlutterFlowTheme.of(context).bodyText2,
+                            style: CustomTypography.bodyText2,
                           ),
                         ),
                         Expanded(
@@ -221,7 +221,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             alignment: AlignmentDirectional(0.9, 0),
                             child: Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Constants.secondaryText,
                               size: 18,
                             ),
                           ),
@@ -237,7 +237,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Constants.secondaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 5,
@@ -255,14 +255,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       children: [
                         Icon(
                           Icons.ios_share,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: Constants.secondaryText,
                           size: 24,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
                             '지인 초대하기',
-                            style: FlutterFlowTheme.of(context).bodyText2,
+                            style: CustomTypography.bodyText2,
                           ),
                         ),
                         Expanded(
@@ -270,7 +270,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             alignment: AlignmentDirectional(0.9, 0),
                             child: Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Constants.secondaryText,
                               size: 18,
                             ),
                           ),
@@ -284,7 +284,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(16, 16, 0, 0),
                 child: Text(
                   '일반',
-                  style: FlutterFlowTheme.of(context).subtitle2,
+                  style: CustomTypography.subtitle2,
                 ),
               ),
               Padding(
@@ -293,7 +293,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Constants.secondaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 5,
@@ -311,14 +311,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       children: [
                         Icon(
                           Icons.privacy_tip_rounded,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: Constants.secondaryText,
                           size: 24,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
                             '서비스 이용약관',
-                            style: FlutterFlowTheme.of(context).bodyText2,
+                            style: CustomTypography.bodyText2,
                           ),
                         ),
                         Expanded(
@@ -326,7 +326,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             alignment: AlignmentDirectional(0.9, 0),
                             child: Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Constants.secondaryText,
                               size: 18,
                             ),
                           ),
@@ -342,7 +342,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                   width: double.infinity,
                   height: 60,
                   decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    color: Constants.secondaryBackground,
                     boxShadow: [
                       BoxShadow(
                         blurRadius: 5,
@@ -360,14 +360,14 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                       children: [
                         Icon(
                           Icons.contact_support_outlined,
-                          color: FlutterFlowTheme.of(context).secondaryText,
+                          color: Constants.secondaryText,
                           size: 24,
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(12, 0, 0, 0),
                           child: Text(
                             '1:1 문의',
-                            style: FlutterFlowTheme.of(context).bodyText2,
+                            style: CustomTypography.bodyText2,
                           ),
                         ),
                         Expanded(
@@ -375,7 +375,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                             alignment: AlignmentDirectional(0.9, 0),
                             child: Icon(
                               Icons.arrow_forward_ios,
-                              color: FlutterFlowTheme.of(context).secondaryText,
+                              color: Constants.secondaryText,
                               size: 18,
                             ),
                           ),

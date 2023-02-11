@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:handover_app/components/flutter_flow_icon_button.dart';
+import 'package:handover_app/components/flutter_flow_widgets.dart';
+import 'package:handover_app/constants.dart';
+import 'package:handover_app/pages/product/flutter_flow_expanded_image_view.dart';
+import 'package:handover_app/utils.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
 import '../../animations.dart';
@@ -290,7 +295,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   ProductDetailsProductDetailResponse.jsonBody,
                                   r'''$.title''',
                                 ).toString(),
-                                style: Constants.title1,
+                                style: CustomTypography.title1,
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation1']!),
                             ),
@@ -308,7 +313,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   ProductDetailsProductDetailResponse.jsonBody,
                                   r'''$.writtenAddr''',
                                 ).toString(),
-                                style: Constants.bodyText2.override(
+                                style: CustomTypography.bodyText2.override(
                                   fontFamily: 'Lexend Deca',
                                   color: Color(0xFF8B97A2),
                                   fontSize: 12,
@@ -327,7 +332,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           children: [
                             Text(
                               '상세 설명',
-                              style: Constants.bodyText2.override(
+                              style: CustomTypography.bodyText2.override(
                                 fontFamily: 'Lexend Deca',
                                 color: Constants.primaryText,
                                 fontSize: 12,
@@ -353,7 +358,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                         .jsonBody,
                                     r'''$.desc''',
                                   ).toString(),
-                                  style: Constants.bodyText2.override(
+                                  style: CustomTypography.bodyText2.override(
                                     fontFamily: 'Lexend Deca',
                                     color: Color(0xFF8B97A2),
                                     fontSize: 14,
@@ -373,7 +378,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           children: [
                             Text(
                               '숙박업소 정보',
-                              style: Constants.bodyText2.override(
+                              style: CustomTypography.bodyText2.override(
                                 fontFamily: 'Lexend Deca',
                                 color: Constants.primaryText,
                                 fontSize: 12,
@@ -429,7 +434,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   width: 130,
                                   height: 50,
                                   color: Constants.tertiaryColor,
-                                  textStyle: Constants.subtitle2.override(
+                                  textStyle:
+                                      CustomTypography.subtitle2.override(
                                     fontFamily: 'Lexend Deca',
                                     color: Constants.secondaryColor,
                                     fontSize: 16,
@@ -460,7 +466,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   width: 130,
                                   height: 50,
                                   color: Constants.primaryColor,
-                                  textStyle: Constants.subtitle2.override(
+                                  textStyle:
+                                      CustomTypography.subtitle2.override(
                                     fontFamily: 'Lexend Deca',
                                     color: Colors.white,
                                     fontSize: 16,
