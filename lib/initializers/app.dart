@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 Future<void> initliazeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await initFirebase();
+  // await initFirebase();
 }
 
 Future initFirebase() async {

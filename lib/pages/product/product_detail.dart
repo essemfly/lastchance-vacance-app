@@ -7,6 +7,7 @@ import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/product/flutter_flow_expanded_image_view.dart';
+import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -138,8 +139,6 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<ApiCallResponse>(
       future: ProductDetailCall.call(),
       builder: (context, snapshot) {

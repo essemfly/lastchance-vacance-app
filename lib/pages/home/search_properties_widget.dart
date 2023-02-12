@@ -5,6 +5,8 @@ import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/product/product_detail.dart';
+import 'package:handover_app/repository/api_calls.dart';
+import 'package:handover_app/repository/api_manager.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils.dart';
@@ -39,8 +41,6 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Constants.primaryBackground,

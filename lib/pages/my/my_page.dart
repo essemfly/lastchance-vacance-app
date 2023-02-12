@@ -24,8 +24,6 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Constants.primaryColor,

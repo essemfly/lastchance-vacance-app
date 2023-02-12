@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:handover_app/pages/home/search_properties_widget.dart';
 import 'package:handover_app/pages/product/product_detail.dart';
+import 'package:handover_app/repository/api_calls.dart';
 import 'package:provider/provider.dart';
 import '../../utils.dart';
 
@@ -35,8 +36,6 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: Constants.primaryBackground,
@@ -252,7 +251,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                     builder: (context) {
                       final productsList = getJsonField(
                         listViewProductsListResponse.jsonBody,
-                        r'''$.content[*]''',
+                        r'''$''',
                       ).toList();
                       return RefreshIndicator(
                         onRefresh: () async {
@@ -308,7 +307,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                       Hero(
                                         tag: getJsonField(
                                           productsListItem,
-                                          r'''$.images[0]''',
+                                          r'''$.default_image''',
                                         ),
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
@@ -321,7 +320,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                           child: CachedNetworkImage(
                                             imageUrl: getJsonField(
                                               productsListItem,
-                                              r'''$.images[0]''',
+                                              r'''$.default_image''',
                                             ),
                                             width: double.infinity,
                                             height: 190,
