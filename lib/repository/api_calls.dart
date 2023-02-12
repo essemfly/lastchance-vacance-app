@@ -34,12 +34,12 @@ class ProductsListCall {
 
   static dynamic products(dynamic response) => getJsonField(
         response,
-        r'''$.content''',
+        r'''$[:]''',
         true,
       );
   static dynamic productId(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].id''',
+        r'''$[:].id''',
         true,
       );
   static dynamic sellerName(dynamic response) => getJsonField(
@@ -69,7 +69,7 @@ class ProductsListCall {
       );
   static dynamic desc(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].desc''',
+        r'''$.content[:].description''',
         true,
       );
   static dynamic reservedDate(dynamic response) => getJsonField(
@@ -84,7 +84,7 @@ class ProductsListCall {
       );
   static dynamic handoverPrice(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].handoverPrice''',
+        r'''$.content[:].discounted_price''',
         true,
       );
   static dynamic status(dynamic response) => getJsonField(
@@ -94,7 +94,7 @@ class ProductsListCall {
       );
   static dynamic defaultimage(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].defaultimage''',
+        r'''$.content[:].default_image''',
         true,
       );
   static dynamic images(dynamic response) => getJsonField(
@@ -114,7 +114,7 @@ class ProductsListCall {
       );
   static dynamic writtenAddr(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].writtenAddr''',
+        r'''$.content[:].written_addr''',
         true,
       );
   static dynamic originId(dynamic response) => getJsonField(
@@ -184,12 +184,12 @@ class ProductsListSearchCall {
       );
   static dynamic title(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].title''',
+        r'''$.content[:].name''',
         true,
       );
   static dynamic desc(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].desc''',
+        r'''$.content[:].description''',
         true,
       );
   static dynamic reservedDate(dynamic response) => getJsonField(
@@ -204,7 +204,7 @@ class ProductsListSearchCall {
       );
   static dynamic handoverPrice(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].handoverPrice''',
+        r'''$.content[:].discounted_price''',
         true,
       );
   static dynamic status(dynamic response) => getJsonField(
@@ -234,7 +234,7 @@ class ProductsListSearchCall {
       );
   static dynamic writtenAddr(dynamic response) => getJsonField(
         response,
-        r'''$.content[:].writtenAddr''',
+        r'''$.content[:].written_addr''',
         true,
       );
   static dynamic originId(dynamic response) => getJsonField(
@@ -255,7 +255,7 @@ class ProductDetailCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Product Detail',
-      apiUrl: 'http://13.209.56.121/product/${productId}',
+      apiUrl: '$_baseApiUrl/product/${productId}',
       callType: ApiCallType.GET,
       headers: {},
       params: {},

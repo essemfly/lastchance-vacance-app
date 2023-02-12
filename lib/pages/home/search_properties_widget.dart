@@ -277,7 +277,7 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
                                       getJsonField(
                                         listViewProductsListSearchResponse
                                             .jsonBody,
-                                        r'''$.content[:].title''',
+                                        r'''$.content[:].name''',
                                       ).toString().maybeHandleOverflow(
                                             maxChars: 36,
                                             replacement: '…',

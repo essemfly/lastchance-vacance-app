@@ -292,7 +292,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                               child: Text(
                                 getJsonField(
                                   ProductDetailsProductDetailResponse.jsonBody,
-                                  r'''$.title''',
+                                  r'''$.name''',
                                 ).toString(),
                                 style: CustomTypography.title1,
                               ).animateOnPageLoad(
@@ -310,7 +310,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                               child: Text(
                                 getJsonField(
                                   ProductDetailsProductDetailResponse.jsonBody,
-                                  r'''$.writtenAddr''',
+                                  r'''$.written_addr''',
                                 ).toString(),
                                 style: CustomTypography.bodyText2.override(
                                   fontFamily: 'Lexend Deca',
@@ -355,7 +355,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   getJsonField(
                                     ProductDetailsProductDetailResponse
                                         .jsonBody,
-                                    r'''$.desc''',
+                                    r'''$.description''',
                                   ).toString(),
                                   style: CustomTypography.bodyText2.override(
                                     fontFamily: 'Lexend Deca',

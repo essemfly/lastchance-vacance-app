@@ -338,7 +338,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                               child: Text(
                                                 getJsonField(
                                                   productsListItem,
-                                                  r'''$.title''',
+                                                  r'''$.name''',
                                                 )
                                                     .toString()
                                                     .maybeHandleOverflow(
@@ -361,7 +361,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                               child: Text(
                                                 getJsonField(
                                                   productsListItem,
-                                                  r'''$.writtenAddr''',
+                                                  r'''$.written_addr''',
                                                 )
                                                     .toString()
                                                     .maybeHandleOverflow(
