@@ -5,29 +5,58 @@ import 'package:handover_app/pages/home/home_page.dart';
 import 'package:handover_app/pages/my/my_page.dart';
 import 'package:handover_app/pages/settings/settings_page.dart';
 
-void main() {
-  initliazeApp();
+void main() => runApp(MyApp());
 
-  runApp(const MyApp());
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class _MyAppState extends State<MyApp> {
+  int _selectedIndex = 0;
 
-  // This widget is the root of your application.
+  static List<Widget> _widgetOptions = <Widget>[
+    HomePageMAINWidget(),
+    MyTripsWidget(),
+    SettingsWidget(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: '라스트 찬스 바캉스',
-        theme: ThemeData(
-            scaffoldBackgroundColor: Colors.white,
-            primarySwatch: Colors.teal,
-            fontFamily: Constants.fontFamily),
-        initialRoute: '/',
-        routes: {
-          '/': (context) => const HomePageMAINWidget(),
-          '/myinfo': (context) => const MyTripsWidget(),
-          '/settings': (context) => const SettingsWidget(),
-        });
+      title: '라스트 찬스 바캉스',
+      theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          primarySwatch: Colors.teal,
+          fontFamily: Constants.fontFamily),
+      home: Scaffold(
+        body: _widgetOptions.elementAt(_selectedIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: '홈',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: '내 정보',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings),
+              label: '설정',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+        ),
+      ),
+    );
   }
 }

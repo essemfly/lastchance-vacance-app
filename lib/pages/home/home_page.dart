@@ -37,6 +37,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       key: scaffoldKey,
       backgroundColor: Constants.primaryBackground,
       body: SingleChildScrollView(
@@ -45,7 +46,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
           children: [
             Container(
               width: double.infinity,
-              height: 250,
+              height: 280,
               decoration: BoxDecoration(
                 color: Constants.dark600,
                 boxShadow: [
@@ -61,13 +62,13 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 8),
+                    padding: EdgeInsetsDirectional.fromSTEB(24, 50, 24, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: Text(
                             'Last Chance Vacance',
                             style: CustomTypography.title1.override(
@@ -86,7 +87,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 6, 0, 0),
                           child: Text(
                             '다른 사람들이 못가게 된 \n호텔, 펜션, 리조트 등의 숙박권을  양도받아\n바캉스를 떠나요',
                             style: CustomTypography.subtitle2.override(
@@ -100,7 +101,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                     child: Container(
                       width: double.infinity,
                       height: 50,
@@ -203,14 +204,13 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
+                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
                             child: Text(
                               '현재 135개의 게시물이 양도받을 주인을 기다리고 있습니다.',
                               textAlign: TextAlign.center,
