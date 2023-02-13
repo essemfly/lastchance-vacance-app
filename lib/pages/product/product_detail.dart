@@ -28,114 +28,11 @@ class ProductDetailsWidget extends StatefulWidget {
 
 class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     with TickerProviderStateMixin {
-  final animationsMap = {
-    'textOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0, 50),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0, 60),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'rowOnPageLoadAnimation1': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0, 80),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'textOnPageLoadAnimation3': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0, 90),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-    'rowOnPageLoadAnimation2': AnimationInfo(
-      trigger: AnimationTrigger.onPageLoad,
-      effects: [
-        FadeEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: 0,
-          end: 1,
-        ),
-        MoveEffect(
-          curve: Curves.easeInOut,
-          delay: 0.ms,
-          duration: 600.ms,
-          begin: Offset(0, 100),
-          end: Offset(0, 0),
-        ),
-      ],
-    ),
-  };
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
   }
 
   @override
@@ -274,15 +171,13 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Text(
-                                getJsonField(
-                                  ProductDetailsResponse.jsonBody,
-                                  r'''$.name''',
-                                ).toString(),
-                                style: CustomTypography.title1,
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation1']!),
-                            ),
+                                child: Text(
+                              getJsonField(
+                                ProductDetailsResponse.jsonBody,
+                                r'''$.name''',
+                              ).toString(),
+                              style: CustomTypography.title1,
+                            )),
                           ],
                         ),
                       ),
@@ -292,20 +187,18 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Expanded(
-                              child: Text(
-                                getJsonField(
-                                  ProductDetailsResponse.jsonBody,
-                                  r'''$.written_addr''',
-                                ).toString(),
-                                style: CustomTypography.bodyText2.override(
-                                  fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF8B97A2),
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.normal,
-                                ),
-                              ).animateOnPageLoad(
-                                  animationsMap['textOnPageLoadAnimation2']!),
-                            ),
+                                child: Text(
+                              getJsonField(
+                                ProductDetailsResponse.jsonBody,
+                                r'''$.written_addr''',
+                              ).toString(),
+                              style: CustomTypography.bodyText2.override(
+                                fontFamily: 'Lexend Deca',
+                                color: Color(0xFF8B97A2),
+                                fontSize: 12,
+                                fontWeight: FontWeight.normal,
+                              ),
+                            )),
                             Text(
                               getJsonField(
                                 ProductDetailsResponse.jsonBody,
@@ -336,23 +229,22 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              '상세 설명',
-                              style: CustomTypography.bodyText2.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Constants.primaryText,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                '상세 설명',
+                                style: CustomTypography.bodyText2.override(
+                                  fontFamily: 'Lexend Deca',
+                                  color: Constants.primaryText,
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
-                            ),
-                          ],
-                        ).animateOnPageLoad(
-                            animationsMap['rowOnPageLoadAnimation1']!),
-                      ),
+                            ],
+                          )),
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
                         child: Row(
@@ -360,22 +252,20 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           children: [
                             Expanded(
                               child: Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
-                                child: Text(
-                                  getJsonField(
-                                    ProductDetailsResponse.jsonBody,
-                                    r'''$.description''',
-                                  ).toString(),
-                                  style: CustomTypography.bodyText2.override(
-                                    fontFamily: 'Lexend Deca',
-                                    color: Color(0xFF8B97A2),
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.normal,
-                                  ),
-                                ).animateOnPageLoad(
-                                    animationsMap['textOnPageLoadAnimation3']!),
-                              ),
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 0, 0, 24),
+                                  child: Text(
+                                    getJsonField(
+                                      ProductDetailsResponse.jsonBody,
+                                      r'''$.description''',
+                                    ).toString(),
+                                    style: CustomTypography.bodyText2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Color(0xFF8B97A2),
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.normal,
+                                    ),
+                                  )),
                             ),
                           ],
                         ),
