@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
@@ -155,6 +156,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
           );
         }
         final ProductDetailsResponse = snapshot.data!;
+        final imageUrls =
+            getJsonField(ProductDetailsResponse.jsonBody, r'''$.images''');
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Constants.secondaryBackground,
@@ -183,51 +186,36 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 children: [
                                   Align(
                                     alignment: AlignmentDirectional(0, 0),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await Navigator.push(
-                                          context,
-                                          PageTransition(
-                                            type: PageTransitionType.fade,
-                                            child: FlutterFlowExpandedImageView(
-                                              image: CachedNetworkImage(
-                                                imageUrl: getJsonField(
-                                                  ProductDetailsResponse
-                                                      .jsonBody,
-                                                  r'''$''',
-                                                ),
-                                                fit: BoxFit.contain,
-                                              ),
-                                              allowRotation: false,
-                                              tag: getJsonField(
-                                                ProductDetailsResponse.jsonBody,
-                                                r'''$''',
-                                              ),
-                                              useHeroAnimation: true,
+                                    child: CarouselSlider(
+                                      options: CarouselOptions(
+                                        autoPlay: true,
+                                        enlargeCenterPage: true,
+                                        aspectRatio: 2.0,
+                                        onPageChanged: (index, reason) {
+                                          setState(() {});
+                                        },
+                                      ),
+                                      items: imageUrls.map<Widget>((url) {
+                                        return Container(
+                                          width:
+                                              MediaQuery.of(context).size.width,
+                                          margin: EdgeInsets.symmetric(
+                                              horizontal: 5.0),
+                                          decoration: BoxDecoration(
+                                            image: DecorationImage(
+                                              image: NetworkImage(url),
+                                              fit: BoxFit.cover,
                                             ),
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Colors.black26,
+                                                offset: Offset(0.0, 2.0),
+                                                blurRadius: 6.0,
+                                              ),
+                                            ],
                                           ),
                                         );
-                                      },
-                                      child: Hero(
-                                        tag: getJsonField(
-                                          ProductDetailsResponse.jsonBody,
-                                          r'''$''',
-                                        ),
-                                        transitionOnUserGestures: true,
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                          child: CachedNetworkImage(
-                                            imageUrl: getJsonField(
-                                              ProductDetailsResponse.jsonBody,
-                                              r'''$.default_image''',
-                                            ),
-                                            width: double.infinity,
-                                            height: double.infinity,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
+                                      }).toList(),
                                     ),
                                   ),
                                   Padding(
