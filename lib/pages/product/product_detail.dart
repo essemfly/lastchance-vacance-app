@@ -318,6 +318,32 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                               ).animateOnPageLoad(
                                   animationsMap['textOnPageLoadAnimation2']!),
                             ),
+                            Text(
+                              getJsonField(
+                                ProductDetailsResponse.jsonBody,
+                                r'''$.written_at''',
+                              ).toString(),
+                              style: CustomTypography.bodyText1,
+                            ),
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 10, 24, 0),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                getJsonField(
+                                      ProductDetailsResponse.jsonBody,
+                                      r'''$.discounted_price''',
+                                    ).toString() +
+                                    "원",
+                                textAlign: TextAlign.start,
+                                style: CustomTypography.title2,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -365,24 +391,6 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                             ),
                           ],
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              '숙박업소 정보',
-                              style: CustomTypography.bodyText2.override(
-                                fontFamily: 'Lexend Deca',
-                                color: Constants.primaryText,
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ).animateOnPageLoad(
-                            animationsMap['rowOnPageLoadAnimation2']!),
                       ),
                     ],
                   ),

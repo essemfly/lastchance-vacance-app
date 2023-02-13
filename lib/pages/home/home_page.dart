@@ -345,6 +345,14 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                                 style: CustomTypography.title3,
                                               ),
                                             ),
+                                            Text(
+                                              getJsonField(
+                                                    productsListItem,
+                                                    r'''$.discounted_price''',
+                                                  ).toString() +
+                                                  '원',
+                                              style: CustomTypography.title3,
+                                            ),
                                           ],
                                         ),
                                       ),
@@ -368,6 +376,13 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                                 style:
                                                     CustomTypography.bodyText1,
                                               ),
+                                            ),
+                                            Text(
+                                              getJsonField(
+                                                productsListItem,
+                                                r'''$.written_at''',
+                                              ).toString(),
+                                              style: CustomTypography.bodyText1,
                                             ),
                                           ],
                                         ),
