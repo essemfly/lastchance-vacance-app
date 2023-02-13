@@ -19,7 +19,7 @@ class ProductDetailsWidget extends StatefulWidget {
     this.propertyRef,
   }) : super(key: key);
 
-  final int? propertyRef;
+  final String? propertyRef;
 
   @override
   _ProductDetailsWidgetState createState() => _ProductDetailsWidgetState();
@@ -140,7 +140,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<ApiCallResponse>(
-      future: ProductDetailCall.call(),
+      future: ProductDetailCall.call(productId: widget.propertyRef!),
       builder: (context, snapshot) {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
@@ -154,7 +154,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
             ),
           );
         }
-        final ProductDetailsProductDetailResponse = snapshot.data!;
+        final ProductDetailsResponse = snapshot.data!;
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Constants.secondaryBackground,
@@ -192,7 +192,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                             child: FlutterFlowExpandedImageView(
                                               image: CachedNetworkImage(
                                                 imageUrl: getJsonField(
-                                                  ProductDetailsProductDetailResponse
+                                                  ProductDetailsResponse
                                                       .jsonBody,
                                                   r'''$''',
                                                 ),
@@ -200,8 +200,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                               ),
                                               allowRotation: false,
                                               tag: getJsonField(
-                                                ProductDetailsProductDetailResponse
-                                                    .jsonBody,
+                                                ProductDetailsResponse.jsonBody,
                                                 r'''$''',
                                               ),
                                               useHeroAnimation: true,
@@ -211,8 +210,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                       },
                                       child: Hero(
                                         tag: getJsonField(
-                                          ProductDetailsProductDetailResponse
-                                              .jsonBody,
+                                          ProductDetailsResponse.jsonBody,
                                           r'''$''',
                                         ),
                                         transitionOnUserGestures: true,
@@ -221,9 +219,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                               BorderRadius.circular(16),
                                           child: CachedNetworkImage(
                                             imageUrl: getJsonField(
-                                              ProductDetailsProductDetailResponse
-                                                  .jsonBody,
-                                              r'''$''',
+                                              ProductDetailsResponse.jsonBody,
+                                              r'''$.default_image''',
                                             ),
                                             width: double.infinity,
                                             height: double.infinity,
@@ -291,7 +288,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                             Expanded(
                               child: Text(
                                 getJsonField(
-                                  ProductDetailsProductDetailResponse.jsonBody,
+                                  ProductDetailsResponse.jsonBody,
                                   r'''$.name''',
                                 ).toString(),
                                 style: CustomTypography.title1,
@@ -309,7 +306,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                             Expanded(
                               child: Text(
                                 getJsonField(
-                                  ProductDetailsProductDetailResponse.jsonBody,
+                                  ProductDetailsResponse.jsonBody,
                                   r'''$.written_addr''',
                                 ).toString(),
                                 style: CustomTypography.bodyText2.override(
@@ -353,8 +350,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                     EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
                                 child: Text(
                                   getJsonField(
-                                    ProductDetailsProductDetailResponse
-                                        .jsonBody,
+                                    ProductDetailsResponse.jsonBody,
                                     r'''$.description''',
                                   ).toString(),
                                   style: CustomTypography.bodyText2.override(

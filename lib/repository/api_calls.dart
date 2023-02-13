@@ -251,7 +251,7 @@ class ProductsListSearchCall {
 
 class ProductDetailCall {
   static Future<ApiCallResponse> call({
-    int? productId = 1,
+    String? productId = "",
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Product Detail',

@@ -229,12 +229,10 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => ProductDetailsWidget(
-                                      propertyRef: valueOrDefault<int>(
-                                        ProductsListSearchCall.products(
-                                          listViewProductsListSearchResponse
-                                              .jsonBody,
-                                        ).length,
-                                        1,
+                                      propertyRef: getJsonField(
+                                        listViewProductsListSearchResponse
+                                            .jsonBody,
+                                        r'''$.content[:].id''',
                                       ),
                                     ),
                                   ),

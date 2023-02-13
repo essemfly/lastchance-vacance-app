@@ -290,12 +290,9 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                       MaterialPageRoute(
                                         builder: (context) =>
                                             ProductDetailsWidget(
-                                          propertyRef: valueOrDefault<int>(
-                                            ProductsListCall.productId(
-                                              listViewProductsListResponse
-                                                  .jsonBody,
-                                            ).length,
-                                            5,
+                                          propertyRef: getJsonField(
+                                            productsListItem,
+                                            r'''$.id''',
                                           ),
                                         ),
                                       ),
