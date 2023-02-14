@@ -253,6 +253,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                         listViewProductsListResponse.jsonBody,
                         r'''$''',
                       ).toList();
+
                       return RefreshIndicator(
                         onRefresh: () async {
                           setState(() => _apiRequestCompleter = null);
@@ -267,6 +268,14 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                           itemBuilder: (context, productsListIndex) {
                             final productsListItem =
                                 productsList[productsListIndex];
+                            var defaultImage = getJsonField(
+                              productsListItem,
+                              r'''$.default_image''',
+                            );
+
+                            if (defaultImage == null) {
+                              defaultImage = 'https://picsum.photos/seed/1/300';
+                            }
                             return Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
@@ -304,7 +313,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                       Hero(
                                         tag: getJsonField(
                                           productsListItem,
-                                          r'''$.default_image''',
+                                          r'''$.id''',
                                         ),
                                         transitionOnUserGestures: true,
                                         child: ClipRRect(
@@ -315,10 +324,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                             topRight: Radius.circular(8),
                                           ),
                                           child: CachedNetworkImage(
-                                            imageUrl: getJsonField(
-                                              productsListItem,
-                                              r'''$.default_image''',
-                                            ),
+                                            imageUrl: defaultImage,
                                             width: double.infinity,
                                             height: 190,
                                             fit: BoxFit.cover,

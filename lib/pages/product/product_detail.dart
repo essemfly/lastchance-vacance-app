@@ -53,8 +53,11 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
           );
         }
         final ProductDetailsResponse = snapshot.data!;
-        final imageUrls =
+        var imageUrls =
             getJsonField(ProductDetailsResponse.jsonBody, r'''$.images''');
+        if (imageUrls == null) {
+          imageUrls = ["https://picsum.photos/seed/1/300"];
+        }
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: Constants.secondaryBackground,

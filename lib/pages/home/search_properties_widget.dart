@@ -242,30 +242,22 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Hero(
-                                    tag: getJsonField(
-                                      listViewProductsListSearchResponse
-                                          .jsonBody,
-                                      r'''$.content[:].images''',
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.only(
+                                      bottomLeft: Radius.circular(0),
+                                      bottomRight: Radius.circular(0),
+                                      topLeft: Radius.circular(8),
+                                      topRight: Radius.circular(8),
                                     ),
-                                    transitionOnUserGestures: true,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                        bottomLeft: Radius.circular(0),
-                                        bottomRight: Radius.circular(0),
-                                        topLeft: Radius.circular(8),
-                                        topRight: Radius.circular(8),
+                                    child: CachedNetworkImage(
+                                      imageUrl: getJsonField(
+                                        listViewProductsListSearchResponse
+                                            .jsonBody,
+                                        r'''$.content[:].images''',
                                       ),
-                                      child: CachedNetworkImage(
-                                        imageUrl: getJsonField(
-                                          listViewProductsListSearchResponse
-                                              .jsonBody,
-                                          r'''$.content[:].images''',
-                                        ),
-                                        width: double.infinity,
-                                        height: 190,
-                                        fit: BoxFit.cover,
-                                      ),
+                                      width: double.infinity,
+                                      height: 190,
+                                      fit: BoxFit.cover,
                                     ),
                                   ),
                                   Padding(
