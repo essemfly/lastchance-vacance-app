@@ -202,13 +202,14 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 fontWeight: FontWeight.normal,
                               ),
                             )),
-                            Text(
-                              getJsonField(
-                                ProductDetailsResponse.jsonBody,
-                                r'''$.written_at''',
-                              ).toString(),
-                              style: CustomTypography.bodyText1,
-                            ),
+                            ConvertDateFormat(
+                                "relative",
+                                DateTime.parse(
+                                  getJsonField(
+                                    ProductDetailsResponse.jsonBody,
+                                    r'''$.written_at''',
+                                  ).toString(),
+                                ))
                           ],
                         ),
                       ),

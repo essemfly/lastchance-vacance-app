@@ -14,7 +14,7 @@ const _baseApiUrl = 'http://52.79.251.236:80';
 class ProductsListCall {
   static Future<ApiCallResponse> call({
     int? page = 0,
-    int? size = 30,
+    int? size = 100,
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Products List',

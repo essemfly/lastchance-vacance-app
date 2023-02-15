@@ -383,13 +383,14 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                                     CustomTypography.bodyText1,
                                               ),
                                             ),
-                                            Text(
-                                              getJsonField(
-                                                productsListItem,
-                                                r'''$.written_at''',
-                                              ).toString(),
-                                              style: CustomTypography.bodyText1,
-                                            ),
+                                            ConvertDateFormat(
+                                                "relative",
+                                                DateTime.parse(
+                                                  getJsonField(
+                                                    productsListItem,
+                                                    r'''$.written_at''',
+                                                  ).toString(),
+                                                ))
                                           ],
                                         ),
                                       ),

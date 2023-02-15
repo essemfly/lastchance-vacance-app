@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:handover_app/constants.dart';
 import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:intl/intl.dart';
@@ -46,4 +48,17 @@ extension FFStringExt on String {
       maxChars != null && length > maxChars
           ? replaceRange(maxChars, null, replacement)
           : this;
+}
+
+Widget ConvertDateFormat(String format, DateTime? dateTime) {
+  if (dateTime == null) {
+    return Text('');
+  }
+  if (format == 'relative') {
+    return Text(timeago.format(dateTime, locale: "ko"));
+  }
+  return Text(
+    DateFormat(format).format(dateTime),
+    style: CustomTypography.bodyText1,
+  );
 }
