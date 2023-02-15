@@ -201,6 +201,12 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
                       );
                     }
                     final listViewProductsListSearchResponse = snapshot.data!;
+                    var imageUrls = getJsonField(
+                        listViewProductsListSearchResponse.jsonBody,
+                        r'''$.images''');
+                    if (imageUrls == null || imageUrls.isEmpty) {
+                      imageUrls = ["https://picsum.photos/seed/1/300"];
+                    }
                     return ListView(
                       padding: EdgeInsets.zero,
                       primary: false,

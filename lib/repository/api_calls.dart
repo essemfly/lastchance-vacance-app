@@ -9,7 +9,7 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-const _baseApiUrl = 'http://127.0.0.1:8000';
+const _baseApiUrl = 'http://52.79.251.236:80';
 
 class ProductsListCall {
   static Future<ApiCallResponse> call({

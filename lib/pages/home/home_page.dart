@@ -273,7 +273,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                               r'''$.default_image''',
                             );
 
-                            if (defaultImage == null) {
+                            if (defaultImage == null || defaultImage == "") {
                               defaultImage = 'https://picsum.photos/seed/1/300';
                             }
                             return Padding(

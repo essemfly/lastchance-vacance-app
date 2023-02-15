@@ -55,7 +55,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
         final ProductDetailsResponse = snapshot.data!;
         var imageUrls =
             getJsonField(ProductDetailsResponse.jsonBody, r'''$.images''');
-        if (imageUrls == null) {
+        if (imageUrls == null || imageUrls.length == 0) {
           imageUrls = ["https://picsum.photos/seed/1/300"];
         }
         return Scaffold(
