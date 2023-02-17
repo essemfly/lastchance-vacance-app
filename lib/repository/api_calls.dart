@@ -283,6 +283,43 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+class LikeProductCall {
+  static Future<ApiCallResponse> call({
+    String? productId = "",
+    String deviceId = "",
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Like Product Call',
+      apiUrl: '$_baseApiUrl/product/${productId}',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class ListLikeProductsCall {
+  static Future<ApiCallResponse> call({
+    String deviceId = "",
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'Like Product Call',
+      apiUrl: '$_baseApiUrl/product/${deviceId}',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 String _serializeList(List? list) {
   list ??= <String>[];
   try {
