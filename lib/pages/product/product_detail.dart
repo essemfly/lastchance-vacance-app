@@ -220,10 +220,10 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           children: [
                             Expanded(
                               child: Text(
-                                getJsonField(
+                                currencyFormat(getJsonField(
                                       ProductDetailsResponse.jsonBody,
                                       r'''$.discounted_price''',
-                                    ).toString() +
+                                    )) +
                                     "원",
                                 textAlign: TextAlign.start,
                                 style: CustomTypography.title2,
@@ -292,8 +292,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                   borderRadius: BorderRadius.only(
                     bottomLeft: Radius.circular(0),
                     bottomRight: Radius.circular(0),
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
+                    topLeft: Radius.circular(0),
+                    topRight: Radius.circular(0),
                   ),
                 ),
                 child: Column(
@@ -305,10 +305,25 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
+                          FlutterFlowIconButton(
+                            borderColor: Colors.transparent,
+                            borderRadius: 30,
+                            borderWidth: 1,
+                            buttonSize: 50,
+                            fillColor: Constants.tertiaryColor,
+                            icon: Icon(
+                              Icons.favorite,
+                              color: Constants.secondaryColor,
+                              size: 30,
+                            ),
+                            onPressed: () {
+                              print('IconButton pressed ...');
+                            },
+                          ),
                           Expanded(
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 10, 0),
+                                  EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: FFButtonWidget(
                                 onPressed: () async {
                                   await launchURL(
@@ -331,7 +346,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
                             ),
@@ -363,7 +378,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                     color: Colors.transparent,
                                     width: 1,
                                   ),
-                                  borderRadius: BorderRadius.circular(30),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
                             ),

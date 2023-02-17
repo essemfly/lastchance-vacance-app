@@ -55,10 +55,20 @@ Widget ConvertDateFormat(String format, DateTime? dateTime) {
     return Text('');
   }
   if (format == 'relative') {
-    return Text(timeago.format(dateTime, locale: "ko"));
+    return Text(timeago.format(dateTime, locale: "ko_KR"));
   }
   return Text(
     DateFormat(format).format(dateTime),
     style: CustomTypography.bodyText1,
   );
+}
+
+String currencyFormat(int price) {
+  final formatCurrency = NumberFormat.simpleCurrency(
+    locale: 'ko_KR',
+    name: '',
+    decimalDigits: 0,
+  );
+
+  return formatCurrency.format(price);
 }

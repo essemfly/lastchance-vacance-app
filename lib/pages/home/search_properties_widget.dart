@@ -261,6 +261,8 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
                                             .jsonBody,
                                         r'''$.content[:].images''',
                                       ),
+                                      errorWidget: (context, url, error) =>
+                                          Icon(Icons.error),
                                       width: double.infinity,
                                       height: 190,
                                       fit: BoxFit.cover,

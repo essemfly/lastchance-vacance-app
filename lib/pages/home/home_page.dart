@@ -328,6 +328,9 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                             width: double.infinity,
                                             height: 190,
                                             fit: BoxFit.cover,
+                                            errorWidget:
+                                                (context, url, error) =>
+                                                    Icon(Icons.error),
                                           ),
                                         ),
                                       ),
@@ -352,10 +355,10 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                                               ),
                                             ),
                                             Text(
-                                              getJsonField(
+                                              currencyFormat(getJsonField(
                                                     productsListItem,
                                                     r'''$.discounted_price''',
-                                                  ).toString() +
+                                                  )) +
                                                   '원',
                                               style: CustomTypography.title3,
                                             ),
