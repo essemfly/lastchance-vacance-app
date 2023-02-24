@@ -186,7 +186,7 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(0, 12, 0, 0),
                 child: FutureBuilder<ApiCallResponse>(
-                  future: ProductsListSearchCall.call(),
+                  future: ProductsListCall.call(),
                   builder: (context, snapshot) {
                     // Customize what your widget looks like when it's loading.
                     if (!snapshot.hasData) {
@@ -307,7 +307,7 @@ class _SearchPropertiesWidgetState extends State<SearchPropertiesWidget> {
                                     ),
                                   ),
                                   FutureBuilder<ApiCallResponse>(
-                                    future: ProductsListSearchCall.call(),
+                                    future: ProductsListCall.call(),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {

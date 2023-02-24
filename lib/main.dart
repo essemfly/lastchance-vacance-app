@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handover_app/constants.dart';
+import 'package:handover_app/initializers/app.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:handover_app/pages/home/home_page.dart';
 import 'package:handover_app/pages/my/my_page.dart';
@@ -7,6 +8,7 @@ import 'package:handover_app/pages/settings/settings_page.dart';
 
 main() async {
   timeago.setLocaleMessages('ko_KR', timeago.KoMessages());
+  await initializeApp();
   runApp(MyApp());
 }
 

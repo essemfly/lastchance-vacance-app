@@ -10,20 +10,25 @@ export 'api_manager.dart' show ApiCallResponse;
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
 const _baseApiUrl = 'http://52.79.251.236:80';
+// const String _baseApiUrl = 'http://127.0.0.1:8000';
 
 class ProductsListCall {
   static Future<ApiCallResponse> call({
-    int? page = 0,
-    int? size = 100,
+    int page = 0,
+    int size = 100,
+    String? search = "",
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Products List',
-      apiUrl: '$_baseApiUrl/products',
+      apiUrl: '$_baseApiUrl/api/products',
       callType: ApiCallType.GET,
-      headers: {},
+      headers: {
+        "Authorization": "Bearer " + getAccessToken(),
+      },
       params: {
-        'page': page,
-        'size': size,
+        'offset': page * size,
+        'limit': size,
+        'search': search,
       },
       returnBody: true,
       encodeBodyUtf8: true,
@@ -129,133 +134,13 @@ class ProductsListCall {
       );
 }
 
-class ProductsListSearchCall {
-  static Future<ApiCallResponse> call({
-    int? page = 0,
-    int? size = 30,
-    String? search = '',
-  }) {
-    return ApiManager.instance.makeApiCall(
-      callName: 'Products List Search',
-      apiUrl: '$_baseApiUrl/products',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {
-        'page': page,
-        'size': size,
-        'search': search,
-      },
-      returnBody: true,
-      encodeBodyUtf8: true,
-      decodeUtf8: true,
-      cache: false,
-    );
-  }
-
-  static dynamic products(dynamic response) => getJsonField(
-        response,
-        r'''$.content''',
-        true,
-      );
-  static dynamic productId(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].id''',
-        true,
-      );
-  static dynamic sellerName(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.name''',
-        true,
-      );
-  static dynamic sellerUid(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.uid''',
-        true,
-      );
-  static dynamic sellerMannerDegree(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.mannerDegree''',
-        true,
-      );
-  static dynamic sellerProfileUrl(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.profileUrl''',
-        true,
-      );
-  static dynamic title(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].name''',
-        true,
-      );
-  static dynamic desc(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].description''',
-        true,
-      );
-  static dynamic reservedDate(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].reservedDate''',
-        true,
-      );
-  static dynamic originalPrice(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].originalPrice''',
-        true,
-      );
-  static dynamic handoverPrice(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].discounted_price''',
-        true,
-      );
-  static dynamic status(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].status''',
-        true,
-      );
-  static dynamic defaultimage(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].default_image''',
-        true,
-      );
-  static dynamic images(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].images''',
-        true,
-      );
-  static dynamic originStatus(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].originStatus''',
-        true,
-      );
-  static dynamic writtenAt(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].writtenAt''',
-        true,
-      );
-  static dynamic writtenAddr(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].written_addr''',
-        true,
-      );
-  static dynamic originId(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].originId''',
-        true,
-      );
-  static dynamic productUrl(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].url''',
-        true,
-      );
-}
-
 class ProductDetailCall {
   static Future<ApiCallResponse> call({
     String? productId = "",
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Product Detail',
-      apiUrl: '$_baseApiUrl/product/${productId}',
+      apiUrl: '$_baseApiUrl/api/product/${productId}',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -283,6 +168,26 @@ class ApiPagingParams {
       'PagingParams(nextPageNumber: $nextPageNumber, numItems: $numItems, lastResponse: $lastResponse,)';
 }
 
+class UserDeviceCall {
+  static Future<ApiCallResponse> call({
+    String? deviceId = "",
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'User Device Call',
+      apiUrl: '$_baseApiUrl/user',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: deviceId,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class LikeProductCall {
   static Future<ApiCallResponse> call({
     String? productId = "",
@@ -290,7 +195,7 @@ class LikeProductCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Like Product Call',
-      apiUrl: '$_baseApiUrl/product/${productId}',
+      apiUrl: '$_baseApiUrl/api/user/like',
       callType: ApiCallType.POST,
       headers: {},
       params: {},
@@ -304,14 +209,18 @@ class LikeProductCall {
 
 class ListLikeProductsCall {
   static Future<ApiCallResponse> call({
-    String deviceId = "",
+    String userId = "",
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'Like Product Call',
-      apiUrl: '$_baseApiUrl/product/${deviceId}',
-      callType: ApiCallType.POST,
+      apiUrl: '$_baseApiUrl/api/user/likes',
+      callType: ApiCallType.GET,
       headers: {},
-      params: {},
+      params: {
+        userId: userId,
+      },
+      body: "",
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
