@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:handover_app/initializers/app.dart';
 import 'package:handover_app/utils.dart';
 
 import 'api_manager.dart';
@@ -9,21 +10,22 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-const _baseApiUrl = 'http://52.79.251.236:80';
-// const String _baseApiUrl = 'http://127.0.0.1:8000';
+// const _baseApiUrl = 'http://52.79.251.236:80';
+const String _baseApiUrl = 'http://127.0.0.1:8000';
 
 class ProductsListCall {
   static Future<ApiCallResponse> call({
     int page = 0,
     int size = 100,
     String? search = "",
-  }) {
+  }) async {
+    String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
       callName: 'Products List',
       apiUrl: '$_baseApiUrl/api/products',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + getAccessToken(),
+        "Authorization": "Bearer " + token,
       },
       params: {
         'offset': page * size,
@@ -177,9 +179,9 @@ class UserDeviceCall {
       apiUrl: '$_baseApiUrl/user',
       callType: ApiCallType.POST,
       headers: {},
-      params: {},
+      params: {"deviceuuid": deviceId},
       body: deviceId,
-      bodyType: BodyType.JSON,
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -220,7 +222,7 @@ class ListLikeProductsCall {
         userId: userId,
       },
       body: "",
-      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
