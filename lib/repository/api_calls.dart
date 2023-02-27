@@ -139,12 +139,15 @@ class ProductsListCall {
 class ProductDetailCall {
   static Future<ApiCallResponse> call({
     String? productId = "",
-  }) {
+  }) async {
+    String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
       callName: 'Product Detail',
       apiUrl: '$_baseApiUrl/api/product/${productId}',
       callType: ApiCallType.GET,
-      headers: {},
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
       params: {},
       returnBody: true,
       encodeBodyUtf8: false,
@@ -193,14 +196,17 @@ class UserDeviceCall {
 class LikeProductCall {
   static Future<ApiCallResponse> call({
     String? productId = "",
-    String deviceId = "",
-  }) {
+  }) async {
+    String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
       callName: 'Like Product Call',
       apiUrl: '$_baseApiUrl/api/user/like',
       callType: ApiCallType.POST,
-      headers: {},
-      params: {},
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      params: {"productid": productId},
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
@@ -210,16 +216,14 @@ class LikeProductCall {
 }
 
 class ListLikeProductsCall {
-  static Future<ApiCallResponse> call({
-    String userId = "",
-  }) {
+  static Future<ApiCallResponse> call() async {
+    String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
       callName: 'Like Product Call',
       apiUrl: '$_baseApiUrl/api/user/likes',
       callType: ApiCallType.GET,
-      headers: {},
-      params: {
-        userId: userId,
+      headers: {
+        "Authorization": "Bearer " + token,
       },
       body: "",
       bodyType: BodyType.JSON,
@@ -231,20 +235,49 @@ class ListLikeProductsCall {
   }
 }
 
-String _serializeList(List? list) {
-  list ??= <String>[];
-  try {
-    return json.encode(list);
-  } catch (_) {
-    return '[]';
+class ListOrdersCall {
+  static Future<ApiCallResponse> call() async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'List Orders Call',
+      apiUrl: '$_baseApiUrl/api/user/orders',
+      callType: ApiCallType.GET,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      body: "",
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
   }
 }
 
-String _serializeJson(dynamic jsonVar) {
-  jsonVar ??= {};
-  try {
-    return json.encode(jsonVar);
-  } catch (_) {
-    return '{}';
+class CreateOrderCall {
+  static Future<ApiCallResponse> call({
+    String? productId = "",
+    String? mobile = "",
+  }) async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'Create Order Call',
+      apiUrl: '$_baseApiUrl/api/user/order',
+      callType: ApiCallType.POST,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      params: {
+        "producid": productId,
+        "mobile": mobile,
+      },
+      body: "",
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
   }
 }
