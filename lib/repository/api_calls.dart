@@ -10,8 +10,8 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-// const _baseApiUrl = 'http://52.79.251.236:80';
-const String _baseApiUrl = 'http://127.0.0.1:8000';
+const _baseApiUrl = 'http://52.79.251.236';
+// const String _baseApiUrl = 'http://127.0.0.1:8000';
 
 class ProductsListCall {
   static Future<ApiCallResponse> call({
@@ -20,6 +20,7 @@ class ProductsListCall {
     String? search = "",
   }) async {
     String token = await getAccessToken();
+    print("HOit api called with page : $page");
     return ApiManager.instance.makeApiCall(
       callName: 'Products List',
       apiUrl: '$_baseApiUrl/api/products',

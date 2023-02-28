@@ -22,9 +22,8 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
   final PagingController<int, dynamic> _pagingController =
       PagingController(firstPageKey: 0);
 
-  int pageNum = 0;
-  final int pageSize = 30;
-  int totalNumProducts = 1795;
+  static const pageSize = 30;
+  int totalNumProducts = 0;
   String searchQuery = '';
 
   @override
@@ -37,6 +36,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
   }
 
   Future<void> _fetchPage(int pageKey) async {
+    print("Fetch: Page Key : $pageKey");
     try {
       final newItemsResponse = await ProductsListCall.call(
           page: pageKey, size: pageSize, search: searchQuery);
@@ -45,7 +45,8 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
         r'''$.products''',
       ).toList();
 
-      final totalItems = getJsonField(newItemsResponse, r'''$.totalCnt''');
+      final totalItems =
+          getJsonField(newItemsResponse.jsonBody, r'''$.totalCnt''');
       setState(() {
         totalNumProducts = totalItems;
       });
@@ -54,7 +55,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
       if (isLastPage) {
         _pagingController.appendLastPage(newItems);
       } else {
-        final nextPageKey = pageKey + 1;
+        final nextPageKey = pageKey + pageSize;
         _pagingController.appendPage(newItems, nextPageKey);
       }
     } catch (error) {
@@ -265,93 +266,22 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
               child: RefreshIndicator(
-                onRefresh: () => Future.sync(() => _pagingController.refresh()),
+                onRefresh: () async => _pagingController.refresh(),
                 child: PagedListView(
-                    pagingController: _pagingController,
-                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                      itemBuilder: (context, item, index) =>
-                          HomePageProductCardWidget(
-                        product: item,
-                      ),
-                    )),
+                  scrollDirection: Axis.vertical,
+                  pagingController: _pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    itemBuilder: (context, item, index) =>
+                        HomePageProductCardWidget(
+                      product: item,
+                    ),
+                  ),
+                ),
               ),
             )
-            //   child: FutureBuilder<ApiCallResponse>(
-            //     future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
-            //           ..complete(ProductsListCall.call()))
-            //         .future,
-            //     builder: (context, snapshot) {
-            //       // Customize what your widget looks like when it's loading.
-            //       if (!snapshot.hasData) {
-            //         return Center(
-            //           child: SizedBox(
-            //             width: 50,
-            //             height: 50,
-            //             child: CircularProgressIndicator(
-            //               color: Constants.primaryColor,
-            //             ),
-            //           ),
-            //         );
-            //       }
-            //       final listViewProductsListResponse = snapshot.data!;
-            //       return Builder(
-            //         builder: (context) {
-            //           final productsList = getJsonField(
-            //             listViewProductsListResponse.jsonBody,
-            //             r'''$.products''',
-            //           ).toList();
-
-            //           return RefreshIndicator(
-            //             onRefresh: () async {
-            //               setState(() => _apiRequestCompleter = null);
-            //               await waitForApiRequestCompleter();
-            //             },
-            //             child: ListView.builder(
-            //               padding: EdgeInsets.zero,
-            //               primary: false,
-            //               shrinkWrap: true,
-            //               scrollDirection: Axis.vertical,
-            //               itemCount: productsList.length,
-            //               itemBuilder: (context, productsListIndex) {
-            //                 final productsListItem =
-            //                     productsList[productsListIndex];
-            //                 var defaultImage = getJsonField(
-            //                   productsListItem,
-            //                   r'''$.default_image''',
-            //                 );
-
-            //                 if (defaultImage == null || defaultImage == "") {
-            //                   defaultImage = 'https://picsum.photos/seed/1/300';
-            //                 }
-            //                 return HomePageProductCardWidget(
-            //                   product: productsListItem,
-            //                 );
-            //               },
-            //             ),
-            //           );
-            //         },
-            //       );
-            //     },
-            //   ),
-            // ),
           ],
         ),
       ),
     );
-  }
-
-  Future waitForApiRequestCompleter({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = _apiRequestCompleter?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
   }
 }
