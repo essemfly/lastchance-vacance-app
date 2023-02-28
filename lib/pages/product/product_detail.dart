@@ -1,18 +1,10 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
-import 'package:handover_app/pages/product/flutter_flow_expanded_image_view.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
-import 'package:page_transition/page_transition.dart';
-import 'package:provider/provider.dart';
-import '../../animations.dart';
 
 class ProductDetailsWidget extends StatefulWidget {
   const ProductDetailsWidget({
@@ -326,8 +318,11 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                               child: FFButtonWidget(
                                 onPressed: () async {
-                                  await launchURL(
-                                      'https://forms.gle/FndeFTxQ9s161hGb6');
+                                  String outLinkUrl = getJsonField(
+                                    ProductDetailsResponse.jsonBody,
+                                    r'''$.outlink''',
+                                  ).toString();
+                                  await launchURL(outLinkUrl);
                                 },
                                 text: '대신 양도받기',
                                 options: FFButtonOptions(
