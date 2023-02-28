@@ -28,8 +28,8 @@ class ProductsListCall {
         "Authorization": "Bearer " + token,
       },
       params: {
-        'offset': page * size,
-        'limit': size,
+        'page': page,
+        'size': size,
         'search': search,
       },
       returnBody: true,
@@ -38,102 +38,6 @@ class ProductsListCall {
       cache: false,
     );
   }
-
-  static dynamic products(dynamic response) => getJsonField(
-        response,
-        r'''$[:]''',
-        true,
-      );
-  static dynamic productId(dynamic response) => getJsonField(
-        response,
-        r'''$[:].id''',
-        true,
-      );
-  static dynamic sellerName(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.name''',
-        true,
-      );
-  static dynamic sellerUid(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.uid''',
-        true,
-      );
-  static dynamic sellerMannerDegree(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.mannerDegree''',
-        true,
-      );
-  static dynamic sellerProfileUrl(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].seller.profileUrl''',
-        true,
-      );
-  static dynamic title(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].name''',
-        true,
-      );
-  static dynamic desc(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].description''',
-        true,
-      );
-  static dynamic reservedDate(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].reservedDate''',
-        true,
-      );
-  static dynamic originalPrice(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].originalPrice''',
-        true,
-      );
-  static dynamic handoverPrice(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].discounted_price''',
-        true,
-      );
-  static dynamic status(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].status''',
-        true,
-      );
-  static dynamic defaultimage(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].default_image''',
-        true,
-      );
-  static dynamic images(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].images''',
-        true,
-      );
-  static dynamic originStatus(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].originStatus''',
-        true,
-      );
-  static dynamic writtenAt(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].writtenAt''',
-        true,
-      );
-  static dynamic writtenAddr(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].written_addr''',
-        true,
-      );
-  static dynamic originId(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].originId''',
-        true,
-      );
-  static dynamic productUrl(dynamic response) => getJsonField(
-        response,
-        r'''$.content[:].url''',
-        true,
-      );
 }
 
 class ProductDetailCall {

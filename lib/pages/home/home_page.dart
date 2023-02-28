@@ -2,12 +2,11 @@ import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
 
 import 'dart:async';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:handover_app/pages/home/home_product_card.dart';
 import 'package:handover_app/pages/home/search_properties_widget.dart';
-import 'package:handover_app/pages/product/product_detail.dart';
 import 'package:handover_app/repository/api_calls.dart';
-import 'package:provider/provider.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../utils.dart';
 
 class HomePageMAINWidget extends StatefulWidget {
@@ -20,17 +19,53 @@ class HomePageMAINWidget extends StatefulWidget {
 class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
   Completer<ApiCallResponse>? _apiRequestCompleter;
   TextEditingController? textController;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
+  final PagingController<int, dynamic> _pagingController =
+      PagingController(firstPageKey: 0);
+
+  int pageNum = 0;
+  final int pageSize = 30;
+  int totalNumProducts = 1795;
+  String searchQuery = '';
 
   @override
   void initState() {
-    super.initState();
     textController = TextEditingController();
+    _pagingController.addPageRequestListener((pageKey) {
+      _fetchPage(pageKey);
+    });
+    super.initState();
+  }
+
+  Future<void> _fetchPage(int pageKey) async {
+    try {
+      final newItemsResponse = await ProductsListCall.call(
+          page: pageKey, size: pageSize, search: searchQuery);
+      final newItems = getJsonField(
+        newItemsResponse.jsonBody,
+        r'''$.products''',
+      ).toList();
+
+      final totalItems = getJsonField(newItemsResponse, r'''$.totalCnt''');
+      setState(() {
+        totalNumProducts = totalItems;
+      });
+
+      final isLastPage = newItems.length < pageSize;
+      if (isLastPage) {
+        _pagingController.appendLastPage(newItems);
+      } else {
+        final nextPageKey = pageKey + 1;
+        _pagingController.appendPage(newItems, nextPageKey);
+      }
+    } catch (error) {
+      _pagingController.error = error;
+    }
   }
 
   @override
   void dispose() {
     textController?.dispose();
+    _pagingController.dispose();
     super.dispose();
   }
 
@@ -38,7 +73,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      key: scaffoldKey,
+      key: GlobalKey<ScaffoldState>(),
       backgroundColor: Constants.primaryBackground,
       body: SingleChildScrollView(
         child: Column(
@@ -212,7 +247,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                           child: Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
                             child: Text(
-                              '현재 135개의 게시물이 양도받을 주인을 기다리고 있습니다.',
+                              '현재 $totalNumProducts개의 게시물이 양도받을 주인을 기다리고 있습니다.',
                               textAlign: TextAlign.center,
                               style: CustomTypography.bodyText2.override(
                                 fontFamily: 'Urbanist',
@@ -229,187 +264,76 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
             ),
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-              child: FutureBuilder<ApiCallResponse>(
-                future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
-                      ..complete(ProductsListCall.call()))
-                    .future,
-                builder: (context, snapshot) {
-                  // Customize what your widget looks like when it's loading.
-                  if (!snapshot.hasData) {
-                    return Center(
-                      child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: CircularProgressIndicator(
-                          color: Constants.primaryColor,
-                        ),
+              child: RefreshIndicator(
+                onRefresh: () => Future.sync(() => _pagingController.refresh()),
+                child: PagedListView(
+                    pagingController: _pagingController,
+                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                      itemBuilder: (context, item, index) =>
+                          HomePageProductCardWidget(
+                        product: item,
                       ),
-                    );
-                  }
-                  final listViewProductsListResponse = snapshot.data!;
-                  return Builder(
-                    builder: (context) {
-                      final productsList = getJsonField(
-                        listViewProductsListResponse.jsonBody,
-                        r'''$''',
-                      ).toList();
-
-                      return RefreshIndicator(
-                        onRefresh: () async {
-                          setState(() => _apiRequestCompleter = null);
-                          await waitForApiRequestCompleter();
-                        },
-                        child: ListView.builder(
-                          padding: EdgeInsets.zero,
-                          primary: false,
-                          shrinkWrap: true,
-                          scrollDirection: Axis.vertical,
-                          itemCount: productsList.length,
-                          itemBuilder: (context, productsListIndex) {
-                            final productsListItem =
-                                productsList[productsListIndex];
-                            var defaultImage = getJsonField(
-                              productsListItem,
-                              r'''$.default_image''',
-                            );
-
-                            if (defaultImage == null || defaultImage == "") {
-                              defaultImage = 'https://picsum.photos/seed/1/300';
-                            }
-                            return Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
-                              child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                  color: Constants.secondaryBackground,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 4,
-                                      color: Color(0x32000000),
-                                      offset: Offset(0, 2),
-                                    )
-                                  ],
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: InkWell(
-                                  onTap: () async {
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            ProductDetailsWidget(
-                                          propertyRef: getJsonField(
-                                            productsListItem,
-                                            r'''$.id''',
-                                          ),
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Hero(
-                                        tag: getJsonField(
-                                          productsListItem,
-                                          r'''$.id''',
-                                        ),
-                                        transitionOnUserGestures: true,
-                                        child: ClipRRect(
-                                          borderRadius: BorderRadius.only(
-                                            bottomLeft: Radius.circular(0),
-                                            bottomRight: Radius.circular(0),
-                                            topLeft: Radius.circular(8),
-                                            topRight: Radius.circular(8),
-                                          ),
-                                          child: CachedNetworkImage(
-                                            imageUrl: defaultImage,
-                                            width: double.infinity,
-                                            height: 190,
-                                            fit: BoxFit.cover,
-                                            errorWidget:
-                                                (context, url, error) =>
-                                                    Icon(Icons.error),
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 12, 16, 8),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                getJsonField(
-                                                  productsListItem,
-                                                  r'''$.name''',
-                                                )
-                                                    .toString()
-                                                    .maybeHandleOverflow(
-                                                      maxChars: 36,
-                                                      replacement: '…',
-                                                    ),
-                                                style: CustomTypography.title3,
-                                              ),
-                                            ),
-                                            Text(
-                                              currencyFormat(getJsonField(
-                                                    productsListItem,
-                                                    r'''$.discounted_price''',
-                                                  )) +
-                                                  '원',
-                                              style: CustomTypography.title3,
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16, 0, 16, 8),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                getJsonField(
-                                                  productsListItem,
-                                                  r'''$.written_addr''',
-                                                )
-                                                    .toString()
-                                                    .maybeHandleOverflow(
-                                                      maxChars: 90,
-                                                      replacement: '…',
-                                                    ),
-                                                style:
-                                                    CustomTypography.bodyText1,
-                                              ),
-                                            ),
-                                            ConvertDateFormat(
-                                                "relative",
-                                                DateTime.parse(
-                                                  getJsonField(
-                                                    productsListItem,
-                                                    r'''$.written_at''',
-                                                  ).toString(),
-                                                ))
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
+                    )),
               ),
-            ),
+            )
+            //   child: FutureBuilder<ApiCallResponse>(
+            //     future: (_apiRequestCompleter ??= Completer<ApiCallResponse>()
+            //           ..complete(ProductsListCall.call()))
+            //         .future,
+            //     builder: (context, snapshot) {
+            //       // Customize what your widget looks like when it's loading.
+            //       if (!snapshot.hasData) {
+            //         return Center(
+            //           child: SizedBox(
+            //             width: 50,
+            //             height: 50,
+            //             child: CircularProgressIndicator(
+            //               color: Constants.primaryColor,
+            //             ),
+            //           ),
+            //         );
+            //       }
+            //       final listViewProductsListResponse = snapshot.data!;
+            //       return Builder(
+            //         builder: (context) {
+            //           final productsList = getJsonField(
+            //             listViewProductsListResponse.jsonBody,
+            //             r'''$.products''',
+            //           ).toList();
+
+            //           return RefreshIndicator(
+            //             onRefresh: () async {
+            //               setState(() => _apiRequestCompleter = null);
+            //               await waitForApiRequestCompleter();
+            //             },
+            //             child: ListView.builder(
+            //               padding: EdgeInsets.zero,
+            //               primary: false,
+            //               shrinkWrap: true,
+            //               scrollDirection: Axis.vertical,
+            //               itemCount: productsList.length,
+            //               itemBuilder: (context, productsListIndex) {
+            //                 final productsListItem =
+            //                     productsList[productsListIndex];
+            //                 var defaultImage = getJsonField(
+            //                   productsListItem,
+            //                   r'''$.default_image''',
+            //                 );
+
+            //                 if (defaultImage == null || defaultImage == "") {
+            //                   defaultImage = 'https://picsum.photos/seed/1/300';
+            //                 }
+            //                 return HomePageProductCardWidget(
+            //                   product: productsListItem,
+            //                 );
+            //               },
+            //             ),
+            //           );
+            //         },
+            //       );
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),
