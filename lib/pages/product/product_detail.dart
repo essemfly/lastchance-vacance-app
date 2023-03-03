@@ -387,8 +387,10 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     // Action Direct
-                                    await launchURL(
-                                        'https://www.daangn.com/articles/496564873');
+                                    await launchURL(getJsonField(
+                                      product,
+                                      r'''$.outlink''',
+                                    ));
                                   },
                                   text: '직접 연락하기',
                                   options: FFButtonOptions(

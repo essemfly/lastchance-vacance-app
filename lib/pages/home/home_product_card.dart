@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/product/product_detail.dart';
 import 'package:handover_app/utils.dart';
