@@ -5,6 +5,8 @@ import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/my/my_page_like.dart';
 import 'package:handover_app/pages/my/my_page_order.dart';
 import 'package:handover_app/pages/product/product_detail.dart';
+import 'package:handover_app/repository/api_calls.dart';
+import 'package:handover_app/utils.dart';
 import 'package:provider/provider.dart';
 
 class MyTripsWidget extends StatefulWidget {
@@ -17,6 +19,30 @@ class MyTripsWidget extends StatefulWidget {
 class _MyTripsWidgetState extends State<MyTripsWidget> {
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  List<dynamic> myLikes = [];
+  List<dynamic> myOrders = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchData();
+  }
+
+  Future<void> _fetchData() async {
+    final likesResponse = await ListLikeProductsCall.call();
+    var myLikesRaw = likesResponse.jsonBody == null
+        ? getJsonField(likesResponse.jsonBody, r'''$''')
+        : [];
+    final ordersResponse = await ListOrdersCall.call();
+    var myOrdersRaw = ordersResponse.jsonBody == null
+        ? getJsonField(ordersResponse.jsonBody, r'''$''')
+        : [];
+
+    setState(() {
+      myLikes = myLikesRaw;
+      myOrders = myOrdersRaw;
+    });
+  }
 
   @override
   void dispose() {
@@ -91,8 +117,8 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
                       Expanded(
                         child: TabBarView(
                           children: [
-                            myPageLikes(context),
-                            myPageOrders(context),
+                            myPageLikes(context, myLikes),
+                            myPageOrders(context, myOrders),
                           ],
                         ),
                       ),

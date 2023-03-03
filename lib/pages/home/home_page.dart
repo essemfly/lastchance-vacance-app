@@ -36,7 +36,6 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
   }
 
   Future<void> _fetchPage(int pageKey) async {
-    print("Fetch: Page Key : $pageKey");
     try {
       final newItemsResponse = await ProductsListCall.call(
           page: pageKey, size: pageSize, search: searchQuery);

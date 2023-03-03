@@ -20,7 +20,6 @@ class ProductsListCall {
     String? search = "",
   }) async {
     String token = await getAccessToken();
-    print("HOit api called with page : $page");
     return ApiManager.instance.makeApiCall(
       callName: 'Products List',
       apiUrl: '$_baseApiUrl/api/products',
