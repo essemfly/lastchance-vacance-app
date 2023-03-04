@@ -4,7 +4,7 @@ import 'package:handover_app/constants.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:handover_app/pages/home/home_product_card.dart';
-import 'package:handover_app/pages/home/search_properties_widget.dart';
+import 'package:handover_app/pages/home/search_page.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../utils.dart';
@@ -17,28 +17,26 @@ class HomePageMAINWidget extends StatefulWidget {
 }
 
 class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
-  Completer<ApiCallResponse>? _apiRequestCompleter;
   TextEditingController? textController;
   final PagingController<int, dynamic> _pagingController =
       PagingController(firstPageKey: 0);
 
   static const pageSize = 30;
   int totalNumProducts = 0;
-  String searchQuery = '';
 
   @override
   void initState() {
+    super.initState();
     textController = TextEditingController();
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
-    super.initState();
   }
 
   Future<void> _fetchPage(int pageKey) async {
     try {
       final newItemsResponse = await ProductsListCall.call(
-          page: pageKey, size: pageSize, search: searchQuery);
+          page: pageKey, size: pageSize, search: "");
       final newItems = getJsonField(
         newItemsResponse.jsonBody,
         r'''$.products''',
@@ -153,7 +151,6 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                               controller: textController,
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelText: '지역, 호텔, 리조트 명',
                                 labelStyle: CustomTypography.bodyText1.override(
                                   fontFamily: 'Urbanist',
                                   color: Constants.grayIcon,
@@ -205,7 +202,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
                               await Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => SearchPropertiesWidget(
+                                  builder: (context) => SearchPageWidget(
                                     searchTerm: textController!.text,
                                   ),
                                 ),

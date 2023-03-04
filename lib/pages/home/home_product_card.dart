@@ -17,8 +17,27 @@ class HomePageProductCardWidget extends StatelessWidget {
     );
 
     if (defaultImage == null || defaultImage == "") {
-      defaultImage = 'https://picsum.photos/seed/1/300';
+      defaultImage = Constants.defaultImageUrl;
     }
+
+    var statusRaw = getJsonField(
+      product,
+      r'''$.status''',
+    );
+    String status = "판매중";
+    Color statusColor = Constants.primaryColor;
+    if (statusRaw == "SALE") {
+      statusRaw = '판매중';
+    }
+    if (statusRaw == "SOLDOUT") {
+      statusRaw = '판매완료';
+      statusColor = Constants.redApple;
+    }
+    if (statusRaw == "UNKNOWN") {
+      statusRaw = '삭제됨';
+      statusColor = Constants.secondaryColor;
+    }
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
       child: Container(
@@ -57,20 +76,44 @@ class HomePageProductCardWidget extends StatelessWidget {
                   r'''$.id''',
                 ),
                 transitionOnUserGestures: true,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.only(
-                    bottomLeft: Radius.circular(0),
-                    bottomRight: Radius.circular(0),
-                    topLeft: Radius.circular(8),
-                    topRight: Radius.circular(8),
-                  ),
-                  child: CachedNetworkImage(
-                    imageUrl: defaultImage,
-                    width: double.infinity,
-                    height: 190,
-                    fit: BoxFit.cover,
-                    errorWidget: (context, url, error) => Icon(Icons.error),
-                  ),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(0),
+                        bottomRight: Radius.circular(0),
+                        topLeft: Radius.circular(8),
+                        topRight: Radius.circular(8),
+                      ),
+                      child: CachedNetworkImage(
+                        imageUrl: defaultImage,
+                        width: double.infinity,
+                        height: 190,
+                        fit: BoxFit.cover,
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 10.0,
+                      left: 10.0,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: statusColor,
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        child: Text(
+                          statusRaw,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    )
+                  ],
                 ),
               ),
               Padding(

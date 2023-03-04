@@ -29,6 +29,8 @@ class Constants {
   static const Color tertiary400 = Color(0xFF39D2C0);
   static const Color textColor = Color(0xFF1E2429);
   static const Color backgroundComponents = Color(0xFF1D2428);
+
+  static const String defaultImageUrl = 'https://picsum.photos/seed/1/300';
 }
 
 class CustomTypography {
