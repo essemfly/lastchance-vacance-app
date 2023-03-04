@@ -109,7 +109,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                         options: CarouselOptions(
                                           autoPlay: true,
                                           enlargeCenterPage: true,
-                                          aspectRatio: 2.0,
+                                          aspectRatio: 1.0,
                                           onPageChanged: (index, reason) {
                                             setState(() {});
                                           },
@@ -129,7 +129,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                               boxShadow: [
                                                 BoxShadow(
                                                   color: Colors.black26,
-                                                  offset: Offset(0.0, 2.0),
+                                                  offset: Offset(0.0, 1.0),
                                                   blurRadius: 6.0,
                                                 ),
                                               ],

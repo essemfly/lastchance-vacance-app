@@ -70,6 +70,11 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
     }
   }
 
+  Future<void> _fetchNewKeyword() async {
+    _pagingController.refresh();
+    _fetchPage(0);
+  }
+
   @override
   void dispose() {
     textController?.dispose();
@@ -136,7 +141,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
             padding: const EdgeInsets.all(8.0),
             child: FFButtonWidget(
               onPressed: () {
-                _fetchPage(2);
+                _fetchNewKeyword();
               },
               text: '검색',
               options: FFButtonOptions(

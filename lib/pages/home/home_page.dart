@@ -256,7 +256,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
           ),
           Expanded(
               child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
             child: RefreshIndicator(
               onRefresh: () async => _pagingController.refresh(),
               child: PagedListView(

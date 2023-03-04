@@ -30,20 +30,6 @@ class _SettingsWidgetState extends State<SettingsWidget> {
       appBar: AppBar(
         backgroundColor: Constants.secondaryBackground,
         automaticallyImplyLeading: false,
-        leading: FlutterFlowIconButton(
-          borderColor: Colors.transparent,
-          borderRadius: 30,
-          borderWidth: 1,
-          buttonSize: 60,
-          icon: Icon(
-            Icons.arrow_back_rounded,
-            color: Constants.primaryText,
-            size: 30,
-          ),
-          onPressed: () async {
-            Navigator.pop(context);
-          },
-        ),
         title: Text(
           '서비스 설정',
           style: CustomTypography.subtitle2,

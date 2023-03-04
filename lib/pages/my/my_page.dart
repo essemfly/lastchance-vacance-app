@@ -32,7 +32,6 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
         ? getJsonField(likesResponse.jsonBody, r'''$''')
         : [];
     setState(() {
-      print(likes);
       myLikes = likes;
     });
   }
@@ -51,23 +50,6 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
       appBar: AppBar(
         backgroundColor: Constants.secondaryBackground,
         automaticallyImplyLeading: false,
-        leading: Align(
-          alignment: AlignmentDirectional(0, 0),
-          child: FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.arrow_back,
-              color: Constants.primaryText,
-              size: 30,
-            ),
-            onPressed: () async {
-              Navigator.pop(context);
-            },
-          ),
-        ),
         title: Text(
           '내가 좋아한 바캉스',
           textAlign: TextAlign.center,
