@@ -52,7 +52,7 @@ class _MyAppState extends State<MyApp> {
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.settings),
-              label: '설정',
+              label: '알림',
             ),
           ],
           currentIndex: _selectedIndex,

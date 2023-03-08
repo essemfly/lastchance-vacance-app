@@ -139,12 +139,12 @@ class ListLikeProductsCall {
   }
 }
 
-class ListOrdersCall {
+class ListKeywordProductsCall {
   static Future<ApiCallResponse> call() async {
     String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
-      callName: 'List Orders Call',
-      apiUrl: '$_baseApiUrl/api/user/orders',
+      callName: 'List Keyword Products Call',
+      apiUrl: '$_baseApiUrl/api/user/keyword/products',
       callType: ApiCallType.GET,
       headers: {
         "Authorization": "Bearer " + token,
@@ -159,22 +159,65 @@ class ListOrdersCall {
   }
 }
 
-class CreateOrderCall {
+class ListKeywordsCall {
+  static Future<ApiCallResponse> call() async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'List Keywords Call',
+      apiUrl: '$_baseApiUrl/api/user/keywords',
+      callType: ApiCallType.GET,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      body: "",
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class InsertKeywordCall {
   static Future<ApiCallResponse> call({
-    String? productId = "",
-    String? mobile = "",
+    String? keyword = "",
   }) async {
     String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
       callName: 'Create Order Call',
-      apiUrl: '$_baseApiUrl/api/user/order',
+      apiUrl: '$_baseApiUrl/api/user/keyword',
       callType: ApiCallType.POST,
       headers: {
         "Authorization": "Bearer " + token,
       },
       params: {
-        "producid": productId,
-        "mobile": mobile,
+        "keyword": keyword,
+      },
+      body: "",
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class RemoveKeywordCall {
+  static Future<ApiCallResponse> call({
+    String? keywordId = "",
+  }) async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'Create Order Call',
+      apiUrl: '$_baseApiUrl/api/user/keyword',
+      callType: ApiCallType.PUT,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      params: {
+        "keywordid": keywordId,
       },
       body: "",
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,

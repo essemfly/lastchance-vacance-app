@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
+import 'package:flutter_share/flutter_share.dart';
+
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:screenshot/screenshot.dart';
 
 class ProductDetailsWidget extends StatefulWidget {
   const ProductDetailsWidget({
@@ -24,6 +30,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
   dynamic product;
   bool isLiked = false;
   List<dynamic> imageUrls = [];
+  final _controller = ScreenshotController();
 
   @override
   void initState() {
@@ -63,6 +70,26 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     setState(() {
       isLiked = isLiked;
     });
+  }
+
+  Future<void> shareScreenshot() async {
+    Directory? directory;
+    if (Platform.isAndroid) {
+      directory = await getExternalStorageDirectory();
+    } else {
+      directory = await getApplicationDocumentsDirectory();
+    }
+    final String localPath =
+        '${directory!.path}/${DateTime.now().toIso8601String()}.png';
+
+    await _controller.captureAndSave(localPath);
+
+    await Future.delayed(Duration(seconds: 1));
+
+    await FlutterShare.shareFile(
+        title: 'Compartilhar comprovante',
+        filePath: localPath,
+        fileType: 'image/png');
   }
 
   @override
@@ -346,19 +373,20 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 },
                               ),
                             ),
+                            ElevatedButton.icon(
+                              onPressed: shareScreenshot,
+                              icon: Icon(Icons.share),
+                              label: Text('Share'),
+                            ),
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     10, 0, 10, 0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    String outLinkUrl = getJsonField(
-                                      product,
-                                      r'''$.outlink''',
-                                    ).toString();
-                                    await launchURL(outLinkUrl);
+                                    await launchURL(Constants.openChatRoomUrl);
                                   },
-                                  text: '대신 양도받기',
+                                  text: '양도 요청하기',
                                   options: FFButtonOptions(
                                     width: 130,
                                     height: 50,

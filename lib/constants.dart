@@ -31,6 +31,8 @@ class Constants {
   static const Color backgroundComponents = Color(0xFF1D2428);
 
   static const String defaultImageUrl = 'https://picsum.photos/seed/1/300';
+
+  static const String openChatRoomUrl = 'https://open.kakao.com/o/gtqVjk8e';
 }
 
 class CustomTypography {

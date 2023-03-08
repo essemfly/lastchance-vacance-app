@@ -61,9 +61,7 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
       ),
       body: SafeArea(
           child: myLikes.length == 0
-              ? Center(
-                  child: CircularProgressIndicator(),
-                )
+              ? Text("좋아요를 누른 게시물이 없습니다", style: CustomTypography.title3)
               : Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
