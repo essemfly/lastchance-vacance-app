@@ -40,14 +40,16 @@ class _SettingsWidgetState extends State<SettingsWidget> {
           centerTitle: true,
           elevation: 0,
         ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            KeywordManager(),
-            SizedBox(height: 20),
-            KeywordProducts(),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              KeywordManager(),
+              SizedBox(height: 20),
+              KeywordProducts(),
+            ],
+          ),
         ));
   }
 }

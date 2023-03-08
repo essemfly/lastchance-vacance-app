@@ -70,6 +70,7 @@ class _KeywordManagerState extends State<KeywordManager> {
                   onPressed: () {
                     String text = textEditingController.text;
                     _addKeyword(text);
+                    textEditingController.text = "";
                   },
                   child: Text('추가'),
                   style: ElevatedButton.styleFrom(

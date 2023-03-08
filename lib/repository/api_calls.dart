@@ -210,7 +210,7 @@ class RemoveKeywordCall {
   }) async {
     String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
-      callName: 'Create Order Call',
+      callName: 'Remove Keyword Call',
       apiUrl: '$_baseApiUrl/api/user/keyword',
       callType: ApiCallType.PUT,
       headers: {
