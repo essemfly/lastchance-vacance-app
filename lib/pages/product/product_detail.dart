@@ -72,7 +72,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     });
   }
 
-  Future<void> shareScreenshot() async {
+  Future<void> _shareScreenshot() async {
     Directory? directory;
     if (Platform.isAndroid) {
       directory = await getExternalStorageDirectory();
@@ -373,10 +373,21 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 },
                               ),
                             ),
-                            ElevatedButton.icon(
-                              onPressed: shareScreenshot,
-                              icon: Icon(Icons.share),
-                              label: Text('Share'),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            GestureDetector(
+                              child: FlutterFlowIconButton(
+                                borderColor: Colors.transparent,
+                                borderRadius: 30,
+                                borderWidth: 1,
+                                buttonSize: 50,
+                                fillColor: Constants.tertiaryColor,
+                                icon: Icon(Icons.share),
+                                onPressed: () {
+                                  _shareScreenshot();
+                                },
+                              ),
                             ),
                             Expanded(
                               child: Padding(
