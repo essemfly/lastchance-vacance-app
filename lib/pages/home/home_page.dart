@@ -1,3 +1,4 @@
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
 

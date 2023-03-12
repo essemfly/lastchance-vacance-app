@@ -7,20 +7,12 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:804403366225:android:df19964eca3a439559eb70",
+        "mobilesdk_app_id": "1:804403366225:android:5cec54c7f58fc2f459eb70",
         "android_client_info": {
-          "package_name": "com.flutterflow.handover"
+          "package_name": "com.essemfly.handover"
         }
       },
       "oauth_client": [
-        {
-          "client_id": "804403366225-nhh9c59mi4et4ht87qabbi1dtabaa5if.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.flutterflow.handover",
-            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
-          }
-        },
         {
           "client_id": "804403366225-ufri6icti1k4l5bkjpmobcac6hrd9e97.apps.googleusercontent.com",
           "client_type": 3
@@ -42,7 +34,7 @@
               "client_id": "804403366225-enhd8pjo4folsjc156igqskf69e3ldat.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.flutterflow.handover"
+                "bundle_id": "com.essemfly.handover"
               }
             }
           ]
