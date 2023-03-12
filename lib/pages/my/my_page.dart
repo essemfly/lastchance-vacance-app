@@ -59,24 +59,34 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: SafeArea(
-          child: myLikes.length == 0
-              ? Text("좋아요를 누른 게시물이 없습니다", style: CustomTypography.title3)
-              : Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      child: ListView.builder(
-                        itemCount: myLikes.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return HomePageProductCardWidget(
-                            product: myLikes[index],
-                          );
-                        },
-                      ),
-                    )
-                  ],
-                )),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: SafeArea(
+            child: myLikes.length == 0
+                ? Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      "좋아요를 누른 게시물이 없습니다",
+                      style: CustomTypography.bodyText1,
+                      textAlign: TextAlign.left,
+                    ),
+                  )
+                : Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: myLikes.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return HomePageProductCardWidget(
+                              product: myLikes[index],
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  )),
+      ),
     );
   }
 }
