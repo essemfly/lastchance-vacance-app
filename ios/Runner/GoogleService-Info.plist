@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>804403366225-enhd8pjo4folsjc156igqskf69e3ldat.apps.googleusercontent.com</string>
+	<string>804403366225-iop2sj0t8p35jbm9qadn1j6kd87h0cr2.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.804403366225-enhd8pjo4folsjc156igqskf69e3ldat</string>
+	<string>com.googleusercontent.apps.804403366225-iop2sj0t8p35jbm9qadn1j6kd87h0cr2</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>804403366225-nhh9c59mi4et4ht87qabbi1dtabaa5if.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.flutterflow.handover</string>
+	<string>com.essemfly.handover</string>
 	<key>PROJECT_ID</key>
 	<string>handover-app-seokmin</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:804403366225:ios:3bf8b2c70e78cb1259eb70</string>
+	<string>1:804403366225:ios:95c35e7d7b383d4359eb70</string>
 </dict>
 </plist>

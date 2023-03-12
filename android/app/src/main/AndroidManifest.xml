@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.essemfly.handover_app">
    <application
-        android:label="handover_app"
+        android:label="라스트찬스바캉스"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
