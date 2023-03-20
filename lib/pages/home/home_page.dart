@@ -5,6 +5,7 @@ import 'package:handover_app/constants.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:handover_app/pages/home/home_product_card.dart';
+import 'package:handover_app/pages/home/product_add_request.dart';
 import 'package:handover_app/pages/home/search_page.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -258,18 +259,43 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
           Expanded(
               child: Padding(
             padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-            child: RefreshIndicator(
-              onRefresh: () async => _pagingController.refresh(),
-              child: PagedListView(
-                scrollDirection: Axis.vertical,
-                pagingController: _pagingController,
-                builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                  itemBuilder: (context, item, index) =>
-                      HomePageProductCardWidget(
-                    product: item,
+            child: Stack(
+              children: [
+                RefreshIndicator(
+                  onRefresh: () async => _pagingController.refresh(),
+                  child: PagedListView(
+                    scrollDirection: Axis.vertical,
+                    pagingController: _pagingController,
+                    builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                      itemBuilder: (context, item, index) =>
+                          HomePageProductCardWidget(
+                        product: item,
+                      ),
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                  bottom: 16.0,
+                  right: 16.0,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      showModalBottomSheet(
+                        context: context,
+                        isScrollControlled:
+                            true, // set this to true to allow scrolling
+                        useRootNavigator:
+                            true, // set this to true to use the root navigator
+                        builder: (BuildContext context) {
+                          return ProductAddWidget();
+                        },
+                      );
+                      // handle button press here
+                    },
+                    backgroundColor: Constants.primaryColor,
+                    child: Icon(Icons.add),
+                  ),
+                ),
+              ],
             ),
           ))
         ],

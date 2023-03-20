@@ -33,6 +33,8 @@ class Constants {
   static const String defaultImageUrl = 'https://picsum.photos/seed/1/300';
 
   static const String openChatRoomUrl = 'https://open.kakao.com/o/gtqVjk8e';
+
+  static const String addProductUrl = 'https://forms.gle/Lz2ku7Kb8dPMAQWM8';
 }
 
 class CustomTypography {

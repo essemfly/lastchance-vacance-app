@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:handover_app/constants.dart';
-import 'package:handover_app/pages/home/home_product_card.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class KeywordManager extends StatefulWidget {
   const KeywordManager({super.key});
@@ -32,6 +32,30 @@ class _KeywordManagerState extends State<KeywordManager> {
   }
 
   Future<void> _addKeyword(String keyword) async {
+    if (keyword.isEmpty || keyword == "") {
+      Fluttertoast.showToast(
+          msg: "키워드가 비어있습니다",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 2,
+          backgroundColor: Constants.primaryColor,
+          textColor: Constants.black600,
+          fontSize: 16.0);
+      return;
+    }
+
+    if (myKeywords.length >= 5) {
+      Fluttertoast.showToast(
+          msg: "키워드는 최대 5개까지 등록할 수 있습니다",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.CENTER,
+          timeInSecForIosWeb: 2,
+          backgroundColor: Constants.primaryColor,
+          textColor: Constants.black600,
+          fontSize: 16.0);
+      return;
+    }
+
     final addKeywordResponse = await InsertKeywordCall.call(keyword: keyword);
     if (addKeywordResponse.statusCode == 200) {
       _fetchData();
@@ -81,7 +105,7 @@ class _KeywordManagerState extends State<KeywordManager> {
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Text("등록한 키워드",
+          child: Text("등록한 키워드 ${myKeywords.length}/5",
               textAlign: TextAlign.left, style: CustomTypography.subtitle2),
         ),
         SafeArea(
@@ -99,16 +123,33 @@ class _KeywordManagerState extends State<KeywordManager> {
                     child: ListView.builder(
                       itemCount: myKeywords.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Constants.primaryColor,
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Constants.primaryColor,
+                            ),
+                            onPressed: () {
+                              _removeKeyword(
+                                  getJsonField(myKeywords[index], r'''$.id'''));
+                            },
+                            child: Row(
+                              children: [
+                                Text(getJsonField(
+                                    myKeywords[index], r'''$.keyword''')),
+                                Expanded(
+                                  flex: 0,
+                                  child: IconButton(
+                                    onPressed: () {
+                                      _removeKeyword(getJsonField(
+                                          myKeywords[index], r'''$.id'''));
+                                    },
+                                    icon: Icon(Icons.delete),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
-                          onPressed: () {
-                            _removeKeyword(
-                                getJsonField(myKeywords[index], r'''$.id'''));
-                          },
-                          child: Text(getJsonField(
-                              myKeywords[index], r'''$.keyword''')),
                         );
                       },
                     ),
