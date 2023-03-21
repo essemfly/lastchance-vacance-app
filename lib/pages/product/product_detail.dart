@@ -425,7 +425,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                     EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
-                                    // Action Direct
+                                    await CreateOrderCall.call(
+                                        productid: widget.propertyRef!);
                                     await launchURL(getJsonField(
                                       product,
                                       r'''$.outlink''',

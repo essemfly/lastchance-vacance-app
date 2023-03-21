@@ -178,7 +178,7 @@ class InsertKeywordCall {
   }) async {
     String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
-      callName: 'Create Order Call',
+      callName: 'Insert Keyword  Call',
       apiUrl: '$_baseApiUrl/api/user/keyword',
       callType: ApiCallType.POST,
       headers: {
@@ -211,6 +211,31 @@ class RemoveKeywordCall {
       },
       params: {
         "keywordid": keywordId,
+      },
+      body: "",
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class CreateOrderCall {
+  static Future<ApiCallResponse> call({
+    String? productid = "",
+  }) async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'Insert Keyword  Call',
+      apiUrl: '$_baseApiUrl/api/user/order',
+      callType: ApiCallType.POST,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      params: {
+        "productid": productid,
       },
       body: "",
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
