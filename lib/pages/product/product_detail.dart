@@ -72,24 +72,12 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     });
   }
 
-  Future<void> _shareScreenshot() async {
-    Directory? directory;
-    if (Platform.isAndroid) {
-      directory = await getExternalStorageDirectory();
-    } else {
-      directory = await getApplicationDocumentsDirectory();
-    }
-    final String localPath =
-        '${directory!.path}/${DateTime.now().toIso8601String()}.png';
-
-    await _controller.captureAndSave(localPath);
-
-    await Future.delayed(Duration(seconds: 1));
-
-    await FlutterShare.shareFile(
-        title: 'Compartilhar comprovante',
-        filePath: localPath,
-        fileType: 'image/png');
+  Future<void> _share() async {
+    await FlutterShare.share(
+        title: 'Example share',
+        text: 'Example share text',
+        linkUrl: 'https://flutter.dev/',
+        chooserTitle: 'Example Chooser Title');
   }
 
   @override
@@ -376,19 +364,19 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                             SizedBox(
                               width: 10,
                             ),
-                            GestureDetector(
-                              child: FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 30,
-                                borderWidth: 1,
-                                buttonSize: 50,
-                                fillColor: Constants.tertiaryColor,
-                                icon: Icon(Icons.share),
-                                onPressed: () {
-                                  _shareScreenshot();
-                                },
-                              ),
-                            ),
+                            // GestureDetector(
+                            //   child: FlutterFlowIconButton(
+                            //     borderColor: Colors.transparent,
+                            //     borderRadius: 30,
+                            //     borderWidth: 1,
+                            //     buttonSize: 50,
+                            //     fillColor: Constants.tertiaryColor,
+                            //     icon: Icon(Icons.share),
+                            //     onPressed: () {
+                            //       _shareScreenshot();
+                            //     },
+                            //   ),
+                            // ),
                             Expanded(
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
