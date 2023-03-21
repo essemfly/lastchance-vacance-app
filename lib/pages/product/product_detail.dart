@@ -9,8 +9,6 @@ import 'package:flutter_share/flutter_share.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:screenshot/screenshot.dart';
 
 class ProductDetailsWidget extends StatefulWidget {
   const ProductDetailsWidget({
@@ -28,9 +26,9 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     with TickerProviderStateMixin {
   final scaffoldKey = GlobalKey<ScaffoldState>();
   dynamic product;
+  bool isDirectProduct = false;
   bool isLiked = false;
   List<dynamic> imageUrls = [];
-  final _controller = ScreenshotController();
 
   @override
   void initState() {
@@ -48,6 +46,15 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     if (images == null || images.length == 0) {
       images = ["https://picsum.photos/seed/1/300"];
     }
+
+    var uploadType =
+        getJsonField(productDetailResponse.jsonBody, r'''$.upload_type''');
+    if (uploadType == "DIRECT") {
+      isDirectProduct = true;
+    } else {
+      isDirectProduct = false;
+    }
+
     var userLike =
         getJsonField(productDetailResponse.jsonBody, r'''$.userLike''');
     if (userLike != null) {
@@ -59,6 +66,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     setState(() {
       product = productResp;
       imageUrls = images;
+      isDirectProduct = isDirectProduct;
       isLiked = isLiked;
     });
   }
@@ -383,6 +391,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                     10, 0, 10, 0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    await CreateOrderCall.call(
+                                        productid: widget.propertyRef!);
                                     await launchURL(Constants.openChatRoomUrl);
                                   },
                                   text: '양도 요청하기',
