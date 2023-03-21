@@ -119,7 +119,7 @@ class _KeywordManagerState extends State<KeywordManager> {
                     ),
                   )
                 : Container(
-                    height: 200,
+                    height: 150,
                     child: ListView.builder(
                       itemCount: myKeywords.length,
                       itemBuilder: (BuildContext context, int index) {

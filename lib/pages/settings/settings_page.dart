@@ -43,10 +43,17 @@ class _SettingsWidgetState extends State<SettingsWidget> {
         body: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               KeywordManager(),
               SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("알림 받은 상품",
+                    textAlign: TextAlign.left,
+                    style: CustomTypography.subtitle2),
+              ),
               KeywordProducts(),
             ],
           ),
