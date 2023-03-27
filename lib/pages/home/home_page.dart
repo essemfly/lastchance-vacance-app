@@ -79,7 +79,7 @@ class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
         children: [
           Container(
             width: double.infinity,
-            height: 280,
+            height: 290,
             decoration: BoxDecoration(
               color: Constants.dark600,
               boxShadow: [

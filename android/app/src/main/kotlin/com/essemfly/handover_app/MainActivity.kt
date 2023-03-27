@@ -1,4 +1,4 @@
-package com.essemfly.handover_app
+package com.essemfly.handover
 
 import io.flutter.embedding.android.FlutterActivity
 
