@@ -3,7 +3,7 @@ import 'api_manager.dart';
 
 export 'api_manager.dart' show ApiCallResponse;
 
-const _baseApiUrl = 'http://52.79.251.236';
+const _baseApiUrl = 'https://handover.space';
 // const String _baseApiUrl = 'http://127.0.0.1:8000';
 
 class ProductsListCall {
