@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/initializers/app.dart';
 import 'package:handover_app/pages/home/home_page.dart';
-import 'package:handover_app/pages/my/my_page.dart';
-import 'package:handover_app/pages/settings/settings_page.dart';
+import 'package:handover_app/pages/setting/my_likes.dart';
+import 'package:handover_app/pages/keyword/keyword_page.dart';
 
 main() async {
   await initializeApp();
@@ -22,9 +22,9 @@ class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    HomePageMAINWidget(),
-    MyTripsWidget(),
-    SettingsWidget(),
+    HomePageWidget(),
+    KeywordsPageWidget(),
+    MyLikesWidget(),
   ];
 
   void _onItemTapped(int index) {

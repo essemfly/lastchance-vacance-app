@@ -7,6 +7,7 @@ import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:flutter_share/flutter_share.dart';
 
 import 'package:handover_app/constants.dart';
+import 'package:handover_app/pages/product/order_request.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
 
@@ -35,6 +36,10 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     _fetchData();
     super.initState();
   }
+
+  // await CreateOrderCall.call(
+  //     productid: widget.propertyRef!);
+  // await launchURL(Constants.openChatRoomUrl);
 
   Future<void> _fetchData() async {
     final productDetailResponse =
@@ -78,14 +83,6 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     setState(() {
       isLiked = isLiked;
     });
-  }
-
-  Future<void> _share() async {
-    await FlutterShare.share(
-        title: 'Example share',
-        text: 'Example share text',
-        linkUrl: 'https://flutter.dev/',
-        chooserTitle: 'Example Chooser Title');
   }
 
   @override
@@ -387,38 +384,6 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                             // ),
                             Expanded(
                               child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    10, 0, 10, 0),
-                                child: FFButtonWidget(
-                                  onPressed: () async {
-                                    await CreateOrderCall.call(
-                                        productid: widget.propertyRef!);
-                                    await launchURL(Constants.openChatRoomUrl);
-                                  },
-                                  text: '양도 요청하기',
-                                  options: FFButtonOptions(
-                                    width: 130,
-                                    height: 50,
-                                    color: Constants.tertiaryColor,
-                                    textStyle:
-                                        CustomTypography.subtitle2.override(
-                                      fontFamily: 'Lexend Deca',
-                                      color: Constants.secondaryColor,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                    elevation: 3,
-                                    borderSide: BorderSide(
-                                      color: Colors.transparent,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
                                 padding:
                                     EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                                 child: FFButtonWidget(
@@ -439,6 +404,44 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                         CustomTypography.subtitle2.override(
                                       fontFamily: 'Lexend Deca',
                                       color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                    elevation: 3,
+                                    borderSide: BorderSide(
+                                      color: Colors.transparent,
+                                      width: 1,
+                                    ),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    10, 0, 10, 0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    await Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            OrderRequestWidget(
+                                          propertyRef: product,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  text: '구매 요청하기',
+                                  options: FFButtonOptions(
+                                    width: 130,
+                                    height: 50,
+                                    color: Constants.tertiaryColor,
+                                    textStyle:
+                                        CustomTypography.subtitle2.override(
+                                      fontFamily: 'Lexend Deca',
+                                      color: Constants.secondaryColor,
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
                                     ),

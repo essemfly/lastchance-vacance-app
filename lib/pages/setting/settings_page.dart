@@ -4,18 +4,19 @@ import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/home/home_product_card.dart';
 import 'package:handover_app/pages/product/product_detail.dart';
+import 'package:handover_app/pages/setting/my_likes.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
 import 'package:provider/provider.dart';
 
-class MyTripsWidget extends StatefulWidget {
-  const MyTripsWidget({Key? key}) : super(key: key);
+class SettingsPageWidget extends StatefulWidget {
+  const SettingsPageWidget({Key? key}) : super(key: key);
 
   @override
-  _MyTripsWidgetState createState() => _MyTripsWidgetState();
+  _SettingsPageWidgetState createState() => _SettingsPageWidgetState();
 }
 
-class _MyTripsWidgetState extends State<MyTripsWidget> {
+class _SettingsPageWidgetState extends State<SettingsPageWidget> {
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late List<dynamic> myLikes = [];
@@ -51,7 +52,7 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
         backgroundColor: Constants.secondaryBackground,
         automaticallyImplyLeading: false,
         title: Text(
-          '내가 좋아한 바캉스',
+          '나의 바캉스',
           textAlign: TextAlign.center,
           style: CustomTypography.subtitle2,
         ),
@@ -59,33 +60,49 @@ class _MyTripsWidgetState extends State<MyTripsWidget> {
         centerTitle: true,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SafeArea(
-            child: myLikes.length == 0
-                ? Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      "좋아요를 누른 게시물이 없습니다",
-                      style: CustomTypography.bodyText1,
-                      textAlign: TextAlign.left,
-                    ),
-                  )
-                : Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: myLikes.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return HomePageProductCardWidget(
-                              product: myLikes[index],
-                            );
-                          },
-                        ),
-                      )
-                    ],
-                  )),
+      body: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Mobile',
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(16.0),
+            child: TextField(
+              decoration: InputDecoration(
+                labelText: 'Address',
+              ),
+            ),
+          ),
+          ListTile(
+            title: Text('My Likes'),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyLikesWidget(),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            title: Text('My Orders'),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () async {
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MyLikesWidget(),
+                ),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

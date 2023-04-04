@@ -1,20 +1,20 @@
 import 'package:handover_app/constants.dart';
-import 'package:handover_app/pages/settings/keyword_manager.dart';
-import 'package:handover_app/pages/settings/keyword_products.dart';
+import 'package:handover_app/pages/keyword/keyword_manager.dart';
+import 'package:handover_app/pages/keyword/keyword_products.dart';
 
 import '../../components/flutter_flow_icon_button.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class SettingsWidget extends StatefulWidget {
-  const SettingsWidget({Key? key}) : super(key: key);
+class KeywordsPageWidget extends StatefulWidget {
+  const KeywordsPageWidget({Key? key}) : super(key: key);
 
   @override
-  _SettingsWidgetState createState() => _SettingsWidgetState();
+  _KeywordsPageWidgetState createState() => _KeywordsPageWidgetState();
 }
 
-class _SettingsWidgetState extends State<SettingsWidget> {
+class _KeywordsPageWidgetState extends State<KeywordsPageWidget> {
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 

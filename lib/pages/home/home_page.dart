@@ -11,15 +11,15 @@ import 'package:handover_app/repository/api_calls.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import '../../utils.dart';
 
-class HomePageMAINWidget extends StatefulWidget {
-  const HomePageMAINWidget({Key? key}) : super(key: key);
+class HomePageWidget extends StatefulWidget {
+  const HomePageWidget({Key? key}) : super(key: key);
 
   @override
-  _HomePageMAINWidgetState createState() => _HomePageMAINWidgetState();
+  _HomePageWidgetState createState() => _HomePageWidgetState();
 }
 
-class _HomePageMAINWidgetState extends State<HomePageMAINWidget> {
-  TextEditingController? textController;
+class _HomePageWidgetState extends State<HomePageWidget> {
+  late TextEditingController textController;
   final PagingController<int, dynamic> _pagingController =
       PagingController(firstPageKey: 0);
 
