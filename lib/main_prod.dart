@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/initializers/app.dart';
 import 'package:handover_app/pages/home/home_page.dart';
-import 'package:handover_app/pages/setting/my_likes.dart';
 import 'package:handover_app/pages/keyword/keyword_page.dart';
+import 'package:handover_app/pages/setting/settings_page.dart';
 
 main() async {
   await initializeApp();
@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
   static List<Widget> _widgetOptions = <Widget>[
     HomePageWidget(),
     KeywordsPageWidget(),
-    MyLikesWidget(),
+    SettingsPageWidget(),
   ];
 
   void _onItemTapped(int index) {
@@ -53,11 +53,11 @@ class _MyAppState extends State<MyApp> {
               label: '홈',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: '알림',
+              icon: Icon(Icons.alarm),
+              label: '키워드',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
+              icon: Icon(Icons.settings),
               label: '내 정보',
             ),
           ],

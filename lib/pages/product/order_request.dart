@@ -24,7 +24,6 @@ class OrderRequestWidget extends StatefulWidget {
 
 class _OrderRequestWidgetState extends State<OrderRequestWidget>
     with TickerProviderStateMixin {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
   dynamic product;
   late TextEditingController mobileController;
   late TextEditingController rewardController;
@@ -64,81 +63,133 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
       defaultImage = Constants.defaultImageUrl;
     }
 
-    return product == null
-        ? Center(
-            child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: Constants.primaryColor,
+    if (product == null) {
+      return Center(
+        child: SizedBox(
+          width: 50,
+          height: 50,
+          child: CircularProgressIndicator(
+            color: Constants.primaryColor,
+          ),
+        ),
+      );
+    }
+
+    return Scaffold(
+        appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_rounded),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          backgroundColor: Constants.secondaryBackground,
+          automaticallyImplyLeading: false,
+          title: Text(
+            '바캉스 거래 요청',
+            style: CustomTypography.subtitle2,
+          ),
+          actions: [],
+          centerTitle: true,
+          elevation: 0,
+        ),
+        backgroundColor: Constants.secondaryBackground,
+        body: SingleChildScrollView(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              height: 200,
+              width: double.infinity,
+              child: Image.network(
+                defaultImage,
+                fit: BoxFit.cover,
               ),
             ),
-          )
-        : Scaffold(
-            key: scaffoldKey,
-            backgroundColor: Constants.secondaryBackground,
-            body: SingleChildScrollView(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 200,
-                  width: double.infinity,
-                  child: Image.network(
-                    defaultImage,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  getJsonField(
+            SizedBox(height: 10),
+            Text(
+              getJsonField(
+                product,
+                r'''$.name''',
+              ),
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              currencyFormat(getJsonField(
                     product,
-                    r'''$.name''',
-                  ),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text(
-                  currencyFormat(getJsonField(
-                        product,
-                        r'''$.discounted_price''',
-                      )) +
-                      '원',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'Enter your details:',
-                  style: TextStyle(
+                    r'''$.discounted_price''',
+                  )) +
+                  '원',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 30),
+            Text(
+              '구매요청 정보 입력',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: mobileController,
+              decoration: InputDecoration(
+                labelText: '연락받으실 전화번호',
+                hintText: '010-1234-1234',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10),
+            TextField(
+              controller: rewardController,
+              decoration: InputDecoration(
+                labelText: '사례금',
+                hintText: '얼마까지 가능하신가요?',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FFButtonWidget(
+                onPressed: () async {
+                  await CreateOrderCall.call(productid: widget.propertyRef!);
+                  await launchURL(getJsonField(
+                    product,
+                    r'''$.outlink''',
+                  ));
+                },
+                text: '구매 요청',
+                options: FFButtonOptions(
+                  width: 130,
+                  height: 50,
+                  color: Constants.primaryColor,
+                  textStyle: CustomTypography.subtitle2.override(
+                    fontFamily: 'Lexend Deca',
+                    color: Constants.secondaryBackground,
                     fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                    fontWeight: FontWeight.w500,
                   ),
-                ),
-                SizedBox(height: 10),
-                TextField(
-                  controller: mobileController,
-                  decoration: InputDecoration(
-                    labelText: 'Mobile Number',
-                    hintText: 'Enter your mobile number',
-                    border: OutlineInputBorder(),
+                  elevation: 3,
+                  borderSide: BorderSide(
+                    color: Colors.transparent,
+                    width: 1,
                   ),
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                SizedBox(height: 10),
-                TextField(
-                  controller: rewardController,
-                  decoration: InputDecoration(
-                    labelText: 'Reward Points',
-                    hintText: 'Enter your reward points',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ],
-            )));
+              ),
+            ),
+            // Spacer(),
+            // Container(
+            //   width: double.infinity,
+            //   child: E
+            // ),
+          ],
+        )));
   }
 }
