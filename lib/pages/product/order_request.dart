@@ -1,11 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
-import 'package:flutter_share/flutter_share.dart';
-
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
@@ -78,6 +73,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
     return Scaffold(
         appBar: AppBar(
           leading: IconButton(
+            color: Constants.black600,
             icon: Icon(Icons.arrow_back_rounded),
             onPressed: () => Navigator.of(context).pop(),
           ),
@@ -105,90 +101,112 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
               ),
             ),
             SizedBox(height: 10),
-            Text(
-              getJsonField(
-                product,
-                r'''$.name''',
-              ),
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              currencyFormat(getJsonField(
-                    product,
-                    r'''$.discounted_price''',
-                  )) +
-                  '원',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 30),
-            Text(
-              '구매요청 정보 입력',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: mobileController,
-              decoration: InputDecoration(
-                labelText: '연락받으실 전화번호',
-                hintText: '010-1234-1234',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 10),
-            TextField(
-              controller: rewardController,
-              decoration: InputDecoration(
-                labelText: '사례금',
-                hintText: '얼마까지 가능하신가요?',
-                border: OutlineInputBorder(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                getJsonField(
+                  product,
+                  r'''$.name''',
+                ),
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: FFButtonWidget(
-                onPressed: () async {
-                  await CreateOrderCall.call(productid: widget.propertyRef!);
-                  await launchURL(getJsonField(
-                    product,
-                    r'''$.outlink''',
-                  ));
-                },
-                text: '구매 요청',
-                options: FFButtonOptions(
-                  width: 130,
-                  height: 50,
-                  color: Constants.primaryColor,
-                  textStyle: CustomTypography.subtitle2.override(
-                    fontFamily: 'Lexend Deca',
-                    color: Constants.secondaryBackground,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500,
-                  ),
-                  elevation: 3,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
-                  ),
-                  borderRadius: BorderRadius.circular(10),
+              child: Text(
+                currencyFormat(getJsonField(
+                      product,
+                      r'''$.discounted_price''',
+                    )) +
+                    '원',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            // Spacer(),
-            // Container(
-            //   width: double.infinity,
-            //   child: E
-            // ),
+            SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                '구매요청 정보 입력',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: mobileController,
+                decoration: InputDecoration(
+                  labelText: '연락받으실 전화번호',
+                  hintText: '010-1234-1234',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextField(
+                controller: rewardController,
+                decoration: InputDecoration(
+                  labelText: '양도사례금',
+                  hintText: '양도해주시는 분께 얼마까지 감사의 표시를 하실수 있나요?',
+                  border: OutlineInputBorder(),
+                ),
+              ),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  FFButtonWidget(
+                      onPressed: () async {
+                        await CreateOrderCall.call(
+                            productid: widget.propertyRef!);
+                        Fluttertoast.showToast(
+                            msg:
+                                "바캉스 구매 신청이 등록되었습니다. \n구매자와 연락이 되면 알려드리겠습니다. \n내 정보에서 내 구매 신청을 확인해보세요.",
+                            toastLength: Toast.LENGTH_LONG,
+                            gravity: ToastGravity.CENTER,
+                            timeInSecForIosWeb: 5,
+                            backgroundColor: Constants.primaryColor,
+                            textColor: Constants.primaryBtnText,
+                            fontSize: 16.0);
+                        Navigator.of(context).pop();
+                        return;
+                      },
+                      text: '구매 요청',
+                      options: FFButtonOptions(
+                        width: 130,
+                        height: 50,
+                        color: Constants.primaryColor,
+                        textStyle: CustomTypography.subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        elevation: 3,
+                        borderSide: BorderSide(
+                          color: Colors.transparent,
+                          width: 1,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                      )),
+                ],
+              ),
+            ),
           ],
         )));
   }

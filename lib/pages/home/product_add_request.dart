@@ -57,6 +57,7 @@ class _ProductAddWidgetState extends State<ProductAddWidget> {
               ),
             ],
           ),
+          SizedBox(height: 30.0),
         ],
       ),
     );

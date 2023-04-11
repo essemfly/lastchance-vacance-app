@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/home/home_product_card.dart';
-import 'package:handover_app/pages/product/product_detail.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';
-import 'package:provider/provider.dart';
 
 class MyLikesWidget extends StatefulWidget {
   const MyLikesWidget({Key? key}) : super(key: key);
@@ -44,30 +40,48 @@ class _MyLikesWidgetState extends State<MyLikesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-        child: myLikes.isEmpty
-            ? Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  "좋아요를 누른 게시물이 없습니다",
-                  style: CustomTypography.bodyText1,
-                  textAlign: TextAlign.left,
-                ),
-              )
-            : Column(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: myLikes.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return HomePageProductCardWidget(
-                          product: myLikes[index],
-                        );
-                      },
-                    ),
-                  )
-                ],
-              ));
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          color: Constants.black600,
+          icon: Icon(Icons.arrow_back_rounded),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        backgroundColor: Constants.secondaryBackground,
+        automaticallyImplyLeading: false,
+        title: Text(
+          '내가 좋아한 바캉스',
+          style: CustomTypography.subtitle2,
+        ),
+        actions: [],
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: SafeArea(
+          child: myLikes.isEmpty
+              ? Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    "좋아한 게시물이 없습니다",
+                    style: CustomTypography.bodyText1,
+                    textAlign: TextAlign.left,
+                  ),
+                )
+              : Column(
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: myLikes.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return HomePageProductCardWidget(
+                            product: myLikes[index],
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                )),
+    );
   }
 }

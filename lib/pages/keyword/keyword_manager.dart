@@ -39,7 +39,7 @@ class _KeywordManagerState extends State<KeywordManager> {
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 2,
           backgroundColor: Constants.primaryColor,
-          textColor: Constants.black600,
+          textColor: Constants.primaryBtnText,
           fontSize: 16.0);
       return;
     }
@@ -51,7 +51,7 @@ class _KeywordManagerState extends State<KeywordManager> {
           gravity: ToastGravity.CENTER,
           timeInSecForIosWeb: 2,
           backgroundColor: Constants.primaryColor,
-          textColor: Constants.black600,
+          textColor: Constants.primaryBtnText,
           fontSize: 16.0);
       return;
     }

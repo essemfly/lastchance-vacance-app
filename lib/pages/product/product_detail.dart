@@ -37,10 +37,6 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
     super.initState();
   }
 
-  // await CreateOrderCall.call(
-  //     productid: widget.propertyRef!);
-  // await launchURL(Constants.openChatRoomUrl);
-
   Future<void> _fetchData() async {
     final productDetailResponse =
         await ProductDetailCall.call(productId: widget.propertyRef!);
@@ -361,26 +357,11 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                       SizedBox(
                         width: 10,
                       ),
-                      // GestureDetector(
-                      //   child: FlutterFlowIconButton(
-                      //     borderColor: Colors.transparent,
-                      //     borderRadius: 30,
-                      //     borderWidth: 1,
-                      //     buttonSize: 50,
-                      //     fillColor: Constants.tertiaryColor,
-                      //     icon: Icon(Icons.share),
-                      //     onPressed: () {
-                      //       _shareScreenshot();
-                      //     },
-                      //   ),
-                      // ),
                       Expanded(
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await CreateOrderCall.call(
-                                  productid: widget.propertyRef!);
                               await launchURL(getJsonField(
                                 product,
                                 r'''$.outlink''',

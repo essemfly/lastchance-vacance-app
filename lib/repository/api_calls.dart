@@ -88,6 +88,46 @@ class UserDeviceCall {
       cache: false,
     );
   }
+
+  static Future<ApiCallResponse> get() async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'User Device Call',
+      apiUrl: '$_baseApiUrl/api/user',
+      callType: ApiCallType.GET,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      body: "",
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+
+  static Future<ApiCallResponse> update({
+    String? mobile = "",
+    String? address = "",
+  }) async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'User Device Call',
+      apiUrl: '$_baseApiUrl/api/user',
+      callType: ApiCallType.PUT,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      params: {"mobile": mobile, "address": address},
+      body: "",
+      bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
 }
 
 class LikeProductCall {
@@ -239,6 +279,26 @@ class CreateOrderCall {
       },
       body: "",
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class ListOrdersCall {
+  static Future<ApiCallResponse> call() async {
+    String token = await getAccessToken();
+    return ApiManager.instance.makeApiCall(
+      callName: 'Like Product Call',
+      apiUrl: '$_baseApiUrl/api/user/orders',
+      callType: ApiCallType.GET,
+      headers: {
+        "Authorization": "Bearer " + token,
+      },
+      body: "",
+      bodyType: BodyType.JSON,
       returnBody: true,
       encodeBodyUtf8: false,
       decodeUtf8: false,
