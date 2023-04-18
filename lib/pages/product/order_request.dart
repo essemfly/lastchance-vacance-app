@@ -176,7 +176,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
                             productid: widget.propertyRef!);
                         Fluttertoast.showToast(
                             msg:
-                                "바캉스 구매 신청이 등록되었습니다. \n구매자와 연락이 되면 알려드리겠습니다. \n내 정보에서 내 구매 신청을 확인해보세요.",
+                                "바캉스 구매 신청이 등록되었습니다. \n최대 12시간 이내로 거래 성사여부 알려드리겠습니다  \n내 정보에서 내 구매 신청을 확인해보세요.",
                             toastLength: Toast.LENGTH_LONG,
                             gravity: ToastGravity.CENTER,
                             timeInSecForIosWeb: 5,
