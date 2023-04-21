@@ -15,6 +15,16 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late List<dynamic> myOrders = [];
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('My Orders Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void initState() {

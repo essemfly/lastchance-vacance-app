@@ -4,6 +4,8 @@ import 'package:timeago/timeago.dart' as timeago;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:handover_app/repository/api_calls.dart';
+import 'package:amplitude_flutter/amplitude.dart';
+import 'package:amplitude_flutter/identify.dart';
 
 final storage = new FlutterSecureStorage();
 
@@ -22,6 +24,15 @@ Future<void> initializeApp() async {
 
 Future initFirebase() async {
   await Firebase.initializeApp();
+}
+
+Future initAmplitude() async {
+  final Amplitude amplitude = Amplitude.getInstance();
+
+  await amplitude.init("7d27514165d296cec3e9ac15d149ed4d");
+
+  final Identify identifier = Identify();
+  Amplitude.getInstance().identify(identifier);
 }
 
 void requestPermission() async {

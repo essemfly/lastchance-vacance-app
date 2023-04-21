@@ -19,6 +19,16 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
   late dynamic user = {};
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _mobileController = TextEditingController();
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('Settings Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void initState() {

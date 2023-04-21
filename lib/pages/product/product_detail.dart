@@ -1,15 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
-import 'package:flutter_share/flutter_share.dart';
-
+import 'package:handover_app/utils.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/product/order_request.dart';
 import 'package:handover_app/repository/api_calls.dart';
-import 'package:handover_app/utils.dart';
 
 class ProductDetailsWidget extends StatefulWidget {
   const ProductDetailsWidget({
@@ -30,6 +26,16 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
   bool isDirectProduct = false;
   bool isLiked = false;
   List<dynamic> imageUrls = [];
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('Product Detail Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void initState() {
@@ -362,7 +368,8 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
-                              await launchURL(getJsonField(
+                              logPageView("Order Direct Page");
+                              launchURL(getJsonField(
                                 product,
                                 r'''$.outlink''',
                               ));

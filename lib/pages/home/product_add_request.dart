@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:handover_app/constants.dart';
+import 'package:handover_app/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProductAddWidget extends StatefulWidget {
@@ -8,6 +9,17 @@ class ProductAddWidget extends StatefulWidget {
 }
 
 class _ProductAddWidgetState extends State<ProductAddWidget> {
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('Product Add Page');
+      _isEventLogged = true;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(

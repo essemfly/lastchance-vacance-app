@@ -22,6 +22,16 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
   dynamic product;
   late TextEditingController mobileController;
   late TextEditingController rewardController;
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('Order Rquest Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void initState() {

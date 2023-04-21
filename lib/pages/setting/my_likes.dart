@@ -15,6 +15,16 @@ class _MyLikesWidgetState extends State<MyLikesWidget> {
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
   late List<dynamic> myLikes = [];
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('My Likes Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void initState() {

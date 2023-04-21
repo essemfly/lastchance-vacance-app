@@ -1,11 +1,8 @@
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/keyword/keyword_manager.dart';
 import 'package:handover_app/pages/keyword/keyword_products.dart';
-
-import '../../components/flutter_flow_icon_button.dart';
+import 'package:handover_app/utils.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class KeywordsPageWidget extends StatefulWidget {
   const KeywordsPageWidget({Key? key}) : super(key: key);
@@ -17,6 +14,16 @@ class KeywordsPageWidget extends StatefulWidget {
 class _KeywordsPageWidgetState extends State<KeywordsPageWidget> {
   final _unfocusNode = FocusNode();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('Keyword Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void dispose() {

@@ -33,6 +33,16 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
 
   static const pageSize = 30;
   int totalNumProducts = 0;
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('Search Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void initState() {

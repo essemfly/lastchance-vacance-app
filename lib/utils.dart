@@ -4,6 +4,7 @@ import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:amplitude_flutter/amplitude.dart';
 
 dynamic getJsonField(
   dynamic response,
@@ -71,4 +72,9 @@ String currencyFormat(int price) {
   );
 
   return formatCurrency.format(price);
+}
+
+Future<void> logPageView(String pageName) async {
+  final Amplitude amplitude = Amplitude.getInstance();
+  amplitude.logEvent('page_view', eventProperties: {'page_name': pageName});
 }

@@ -23,6 +23,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   static const pageSize = 30;
   int totalNumProducts = 0;
+  bool _isEventLogged = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!_isEventLogged) {
+      logPageView('Home Page');
+      _isEventLogged = true;
+    }
+  }
 
   @override
   void initState() {
