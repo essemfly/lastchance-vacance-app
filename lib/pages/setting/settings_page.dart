@@ -191,6 +191,13 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
               );
             },
           ),
+          ListTile(
+            title: Text('오픈 채팅방 가기'),
+            trailing: Icon(Icons.arrow_forward),
+            onTap: () async {
+              await launchURL(Constants.openChatRoomUrl);
+            },
+          ),
         ],
       ),
     );
