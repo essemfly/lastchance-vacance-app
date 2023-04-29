@@ -6,6 +6,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:amplitude_flutter/amplitude.dart';
 import 'package:amplitude_flutter/identify.dart';
+import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
 final storage = new FlutterSecureStorage();
 
@@ -36,6 +37,8 @@ Future initAmplitude() async {
 }
 
 void requestPermission() async {
+  await AppTrackingTransparency.requestTrackingAuthorization();
+
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
   NotificationSettings settings = await messaging.requestPermission(

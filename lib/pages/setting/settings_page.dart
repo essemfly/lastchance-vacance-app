@@ -81,6 +81,23 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
                   child: TextField(
+                    onSubmitted: (value) async => {
+                      if (value != "")
+                        {
+                          await UserDeviceCall.update(
+                            address: _addressController.text,
+                            mobile: _mobileController.text,
+                          ),
+                          Fluttertoast.showToast(
+                              msg: "전화번호가 저장되었습니다",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 2,
+                              backgroundColor: Constants.primaryColor,
+                              textColor: Constants.primaryBtnText,
+                              fontSize: 16.0)
+                        }
+                    },
                     controller: _mobileController,
                     decoration: InputDecoration(
                       labelText: '전화번호',
@@ -126,6 +143,23 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                 child: Padding(
                   padding: EdgeInsets.all(16.0),
                   child: TextField(
+                    onSubmitted: (value) async => {
+                      if (value != "")
+                        {
+                          await UserDeviceCall.update(
+                            address: _addressController.text,
+                            mobile: _mobileController.text,
+                          ),
+                          Fluttertoast.showToast(
+                              msg: "주소가 저장되었습니다",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.CENTER,
+                              timeInSecForIosWeb: 2,
+                              backgroundColor: Constants.primaryColor,
+                              textColor: Constants.primaryBtnText,
+                              fontSize: 16.0)
+                        }
+                    },
                     controller: _addressController,
                     decoration: InputDecoration(
                       labelText: '주소',

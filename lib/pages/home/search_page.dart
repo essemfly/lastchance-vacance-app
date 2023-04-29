@@ -1,16 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:handover_app/components/flutter_flow_icon_button.dart';
 import 'package:handover_app/components/flutter_flow_widgets.dart';
 import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/home/home_product_card.dart';
-import 'package:handover_app/pages/product/product_detail.dart';
 import 'package:handover_app/repository/api_calls.dart';
-import 'package:handover_app/repository/api_manager.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:provider/provider.dart';
-
 import '../../utils.dart';
 
 class SearchPageWidget extends StatefulWidget {
@@ -30,6 +23,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
   final PagingController<int, dynamic> _pagingController =
       PagingController(firstPageKey: 0);
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final FocusNode _focusNode = FocusNode();
 
   static const pageSize = 30;
   int totalNumProducts = 0;
@@ -57,13 +51,15 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
     try {
       final newItemsResponse = await ProductsListCall.call(
           page: pageKey, size: pageSize, search: textController?.text ?? "");
-      final newItems = getJsonField(
-        newItemsResponse.jsonBody,
-        r'''$.products''',
-      ).toList();
-
       final totalItems =
           getJsonField(newItemsResponse.jsonBody, r'''$.totalCnt''');
+      final newItems = totalItems > 0
+          ? getJsonField(
+              newItemsResponse.jsonBody,
+              r'''$.products''',
+            ).toList()
+          : [];
+
       setState(() {
         totalNumProducts = totalItems;
       });
@@ -103,6 +99,10 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
         title: TextFormField(
           controller: textController,
           obscureText: false,
+          focusNode: _focusNode,
+          onFieldSubmitted: (value) {
+            _fetchNewKeyword();
+          },
           decoration: InputDecoration(
             labelStyle: CustomTypography.bodyText1.override(
               fontFamily: 'Urbanist',
@@ -175,26 +175,29 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
         centerTitle: false,
         elevation: 0,
       ),
-      body: Column(
-        children: [
-          Expanded(
-              child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
-            child: RefreshIndicator(
-              onRefresh: () async => _pagingController.refresh(),
-              child: PagedListView(
-                scrollDirection: Axis.vertical,
-                pagingController: _pagingController,
-                builderDelegate: PagedChildBuilderDelegate<dynamic>(
-                  itemBuilder: (context, item, index) =>
-                      HomePageProductCardWidget(
-                    product: item,
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Column(
+          children: [
+            Expanded(
+                child: Padding(
+              padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+              child: RefreshIndicator(
+                onRefresh: () async => _pagingController.refresh(),
+                child: PagedListView(
+                  scrollDirection: Axis.vertical,
+                  pagingController: _pagingController,
+                  builderDelegate: PagedChildBuilderDelegate<dynamic>(
+                    itemBuilder: (context, item, index) =>
+                        HomePageProductCardWidget(
+                      product: item,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ))
-        ],
+            ))
+          ],
+        ),
       ),
     );
   }

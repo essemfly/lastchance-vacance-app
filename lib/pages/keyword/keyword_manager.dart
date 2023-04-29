@@ -81,6 +81,13 @@ class _KeywordManagerState extends State<KeywordManager> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: TextField(
+                  onSubmitted: (value) {
+                    if (value != "") {
+                      String text = textEditingController.text;
+                      _addKeyword(text);
+                      textEditingController.text = "";
+                    }
+                  },
                   controller: textEditingController,
                   decoration: InputDecoration(
                     hintText: '알림 받을 키워드를 입력하세요',
