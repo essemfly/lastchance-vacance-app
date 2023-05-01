@@ -15,6 +15,7 @@ Future<void> initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initFirebase();
+  await initAmplitude();
   requestPermission();
 
   String firebaseDeviceToken = await getFirebaseToken();
