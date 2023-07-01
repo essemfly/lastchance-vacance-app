@@ -265,6 +265,8 @@ class RemoveKeywordCall {
 class CreateOrderCall {
   static Future<ApiCallResponse> call({
     String? productid = "",
+    String? mobile = "",
+    String? reward = "",
   }) async {
     String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
@@ -276,6 +278,8 @@ class CreateOrderCall {
       },
       params: {
         "productid": productid,
+        "mobile": mobile,
+        "rewardprice": reward,
       },
       body: "",
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,

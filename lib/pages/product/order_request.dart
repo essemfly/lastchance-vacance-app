@@ -169,7 +169,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
                 controller: rewardController,
                 decoration: InputDecoration(
                   labelText: '양도사례금',
-                  hintText: '양도해주시는 분께 얼마까지 감사의 표시를 하실수 있나요?',
+                  hintText: '통상 3000원의 양도대행비용을 받고 있습니다.',
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -183,7 +183,9 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
                   FFButtonWidget(
                       onPressed: () async {
                         await CreateOrderCall.call(
-                            productid: widget.propertyRef!);
+                            productid: widget.propertyRef!,
+                            mobile: mobileController.text,
+                            reward: rewardController.text);
                         Fluttertoast.showToast(
                             msg:
                                 "바캉스 구매 신청이 등록되었습니다. \n최대 12시간 이내로 거래 성사여부 알려드리겠습니다  \n내 정보에서 내 구매 신청을 확인해보세요.",
