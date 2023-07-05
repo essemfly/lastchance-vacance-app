@@ -43,7 +43,7 @@ class _KeywordsPageWidgetState extends State<KeywordsPageWidget> {
             '알림 키워드 설정',
             style: CustomTypography.subtitle2,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0,
         ),
@@ -53,15 +53,15 @@ class _KeywordsPageWidgetState extends State<KeywordsPageWidget> {
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              KeywordManager(),
-              SizedBox(height: 20),
+              const KeywordManager(),
+              const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text("알림 받은 상품",
                     textAlign: TextAlign.left,
                     style: CustomTypography.subtitle2),
               ),
-              KeywordProducts(),
+              const KeywordProducts(),
             ],
           ),
         ));

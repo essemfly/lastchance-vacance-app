@@ -7,7 +7,7 @@ import 'package:handover_app/utils.dart';
 class HomePageProductCardWidget extends StatelessWidget {
   final dynamic product;
 
-  HomePageProductCardWidget({super.key, this.product});
+  const HomePageProductCardWidget({super.key, this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -39,12 +39,12 @@ class HomePageProductCardWidget extends StatelessWidget {
     }
 
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
+      padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 12),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
           color: Constants.secondaryBackground,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               blurRadius: 4,
               color: Color(0x32000000),
@@ -79,7 +79,7 @@ class HomePageProductCardWidget extends StatelessWidget {
                 child: Stack(
                   children: [
                     ClipRRect(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.circular(0),
                         bottomRight: Radius.circular(0),
                         topLeft: Radius.circular(8),
@@ -90,7 +90,7 @@ class HomePageProductCardWidget extends StatelessWidget {
                         width: double.infinity,
                         height: 190,
                         fit: BoxFit.cover,
-                        errorWidget: (context, url, error) => Icon(Icons.error),
+                        errorWidget: (context, url, error) => const Icon(Icons.error),
                       ),
                     ),
                     Positioned(
@@ -101,11 +101,11 @@ class HomePageProductCardWidget extends StatelessWidget {
                           color: statusColor,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 8.0, vertical: 4.0),
                         child: Text(
                           statusRaw,
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.white,
                             fontSize: 16.0,
                             fontWeight: FontWeight.bold,
@@ -117,7 +117,7 @@ class HomePageProductCardWidget extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 12, 16, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 12, 16, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [
@@ -134,18 +134,17 @@ class HomePageProductCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      currencyFormat(getJsonField(
+                      '${currencyFormat(getJsonField(
                             product,
                             r'''$.discounted_price''',
-                          )) +
-                          '원',
+                          ))}원',
                       style: CustomTypography.title3,
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
+                padding: const EdgeInsetsDirectional.fromSTEB(16, 0, 16, 8),
                 child: Row(
                   mainAxisSize: MainAxisSize.max,
                   children: [

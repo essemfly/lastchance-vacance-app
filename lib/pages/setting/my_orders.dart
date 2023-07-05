@@ -54,7 +54,7 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
       appBar: AppBar(
         leading: IconButton(
           color: Constants.black600,
-          icon: Icon(Icons.arrow_back_rounded),
+          icon: const Icon(Icons.arrow_back_rounded),
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: Constants.secondaryBackground,
@@ -63,7 +63,7 @@ class _MyOrdersWidgetState extends State<MyOrdersWidget> {
           '내가 구매요청한 바캉스',
           style: CustomTypography.subtitle2,
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 0,
       ),

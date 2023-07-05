@@ -73,7 +73,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   void dispose() {
-    textController?.dispose();
+    textController.dispose();
     _pagingController.dispose();
     _focusNode.dispose();
 
@@ -92,7 +92,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           children: [
             Container(
               width: double.infinity,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Constants.dark600,
                 boxShadow: [
                   BoxShadow(
@@ -107,13 +107,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 50, 24, 10),
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 50, 24, 10),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                           child: Text(
                             'Last Chance Vacance',
                             style: CustomTypography.title1.override(
@@ -126,13 +126,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(0, 6, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(0, 6, 0, 0),
                           child: Text(
                             '다른 사람들이 못가게 된 \n호텔, 펜션, 리조트 등의 숙박권을  양도받아\n바캉스를 떠나요',
                             style: CustomTypography.subtitle2.override(
@@ -146,7 +146,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(16, 20, 16, 0),
                     child: Container(
                       width: double.infinity,
                       height: 50,
@@ -154,14 +154,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         color: Constants.primaryBackground,
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      alignment: AlignmentDirectional(0, 0),
+                      alignment: const AlignmentDirectional(0, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Expanded(
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
+                                  const EdgeInsetsDirectional.fromSTEB(4, 0, 4, 0),
                               child: TextFormField(
                                 controller: textController,
                                 onFieldSubmitted: (value) async => {
@@ -169,7 +169,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     context,
                                     MaterialPageRoute(
                                       builder: (context) => SearchPageWidget(
-                                        searchTerm: textController!.text,
+                                        searchTerm: textController.text,
                                       ),
                                     ),
                                   )
@@ -183,54 +183,54 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     color: Constants.grayIcon,
                                   ),
                                   enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0x00000000),
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   focusedBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0x00000000),
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   errorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0x00000000),
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                   focusedErrorBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
+                                    borderSide: const BorderSide(
                                       color: Color(0x00000000),
                                       width: 2,
                                     ),
                                     borderRadius: BorderRadius.circular(8),
                                   ),
-                                  prefixIcon: Icon(
+                                  prefixIcon: const Icon(
                                     Icons.search_sharp,
                                     color: Constants.grayIcon,
                                   ),
                                 ),
                                 style: CustomTypography.bodyText1.override(
                                   fontFamily: 'Urbanist',
-                                  color: Color(0xFF5E616A),
+                                  color: const Color(0xFF5E616A),
                                 ),
                               ),
                             ),
                           ),
                           Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 8, 0),
                             child: FFButtonWidget(
                               onPressed: () async {
                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => SearchPageWidget(
-                                      searchTerm: textController!.text,
+                                      searchTerm: textController.text,
                                     ),
                                   ),
                                 );
@@ -245,7 +245,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   color: Colors.white,
                                 ),
                                 elevation: 2,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
@@ -258,13 +258,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
+                            padding: const EdgeInsetsDirectional.fromSTEB(0, 5, 0, 5),
                             child: Text(
                               '현재 $totalNumProducts개의 게시물이 양도받을 주인을 기다리고 있습니다.',
                               textAlign: TextAlign.center,
@@ -283,7 +283,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             ),
             Expanded(
                 child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
               child: Stack(
                 children: [
                   RefreshIndicator(
@@ -311,13 +311,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           useRootNavigator:
                               true, // set this to true to use the root navigator
                           builder: (BuildContext context) {
-                            return ProductAddWidget();
+                            return const ProductAddWidget();
                           },
                         );
                         // handle button press here
                       },
                       backgroundColor: Constants.primaryColor,
-                      child: Icon(Icons.add),
+                      child: const Icon(Icons.add),
                     ),
                   ),
                 ],

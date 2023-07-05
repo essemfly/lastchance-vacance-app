@@ -53,7 +53,7 @@ extension FFStringExt on String {
 
 Widget ConvertDateFormat(String format, DateTime? dateTime) {
   if (dateTime == null) {
-    return Text('');
+    return const Text('');
   }
   if (format == 'relative') {
     return Text(timeago.format(dateTime, locale: "ko_KR"));

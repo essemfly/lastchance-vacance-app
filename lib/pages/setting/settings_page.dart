@@ -67,7 +67,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
           textAlign: TextAlign.center,
           style: CustomTypography.subtitle2,
         ),
-        actions: [],
+        actions: const [],
         centerTitle: true,
         elevation: 0,
       ),
@@ -79,7 +79,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: TextField(
                     onSubmitted: (value) async => {
                       if (value != "")
@@ -99,7 +99,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         }
                     },
                     controller: _mobileController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: '전화번호',
                     ),
                   ),
@@ -122,10 +122,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           textColor: Constants.primaryBtnText,
                           fontSize: 16.0);
                     },
-                    child: Text('저장'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Constants.primaryColor,
-                    )),
+                    ),
+                    child: const Text('저장')),
               ),
             ],
           ),
@@ -141,7 +141,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.all(16.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: TextField(
                     onSubmitted: (value) async => {
                       if (value != "")
@@ -161,7 +161,7 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                         }
                     },
                     controller: _addressController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: '주소',
                     ),
                   ),
@@ -184,10 +184,10 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
                           textColor: Constants.primaryBtnText,
                           fontSize: 16.0);
                     },
-                    child: Text('저장'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Constants.primaryColor,
-                    )),
+                    ),
+                    child: const Text('저장')),
               ),
             ],
           ),
@@ -200,34 +200,34 @@ class _SettingsPageWidgetState extends State<SettingsPageWidget> {
               fontWeight: FontWeight.w300,
             ),
           ),
-          SizedBox(height: 20.0),
+          const SizedBox(height: 20.0),
           ListTile(
-            title: Text('내가 좋아한 바캉스'),
-            trailing: Icon(Icons.arrow_forward),
+            title: const Text('내가 좋아한 바캉스'),
+            trailing: const Icon(Icons.arrow_forward),
             onTap: () async {
               await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyLikesWidget(),
+                  builder: (context) => const MyLikesWidget(),
                 ),
               );
             },
           ),
           ListTile(
-            title: Text('내가 구매요청한 바캉스'),
-            trailing: Icon(Icons.arrow_forward),
+            title: const Text('내가 구매요청한 바캉스'),
+            trailing: const Icon(Icons.arrow_forward),
             onTap: () async {
               await Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => MyOrdersWidget(),
+                  builder: (context) => const MyOrdersWidget(),
                 ),
               );
             },
           ),
           ListTile(
-            title: Text('오픈 채팅방 가기'),
-            trailing: Icon(Icons.arrow_forward),
+            title: const Text('오픈 채팅방 가기'),
+            trailing: const Icon(Icons.arrow_forward),
             onTap: () async {
               await launchURL(Constants.openChatRoomUrl);
             },

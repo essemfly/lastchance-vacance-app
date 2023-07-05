@@ -109,34 +109,34 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
               color: Constants.grayIcon,
             ),
             enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0x00000000),
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(8),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0x00000000),
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(8),
             ),
             errorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0x00000000),
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(8),
             ),
             focusedErrorBorder: OutlineInputBorder(
-              borderSide: BorderSide(
+              borderSide: const BorderSide(
                 color: Color(0x00000000),
                 width: 2,
               ),
               borderRadius: BorderRadius.circular(8),
             ),
-            prefixIcon: Icon(
+            prefixIcon: const Icon(
               Icons.search_sharp,
               color: Constants.grayIcon,
             ),
@@ -163,7 +163,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
                   color: Colors.white,
                 ),
                 elevation: 2,
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Colors.transparent,
                   width: 1,
                 ),
@@ -181,7 +181,7 @@ class _SearchPageWidgetState extends State<SearchPageWidget> {
           children: [
             Expanded(
                 child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0, 8, 0, 0),
               child: RefreshIndicator(
                 onRefresh: () async => _pagingController.refresh(),
                 child: PagedListView(

@@ -4,6 +4,8 @@ import 'package:handover_app/utils.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ProductAddWidget extends StatefulWidget {
+  const ProductAddWidget({super.key});
+
   @override
   _ProductAddWidgetState createState() => _ProductAddWidgetState();
 }
@@ -23,14 +25,14 @@ class _ProductAddWidgetState extends State<ProductAddWidget> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.all(16.0),
+      padding: const EdgeInsets.all(16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 '바캉스 등록 요청하기',
                 style: TextStyle(
                   fontSize: 20.0,
@@ -38,14 +40,14 @@ class _ProductAddWidgetState extends State<ProductAddWidget> {
                 ),
               ),
               IconButton(
-                icon: Icon(Icons.close),
+                icon: const Icon(Icons.close),
                 onPressed: () => Navigator.pop(context),
               ),
             ],
           ),
-          SizedBox(height: 16.0),
-          Padding(
-            padding: const EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+          const SizedBox(height: 16.0),
+          const Padding(
+            padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
             child: Text("상품 등록을 요청주시면 관리자가 확인 후 등록해드립니다."),
           ),
           Row(
@@ -65,11 +67,11 @@ class _ProductAddWidgetState extends State<ProductAddWidget> {
                     throw 'Could not launch $url';
                   }
                 },
-                child: Text('등록 요청하기'),
+                child: const Text('등록 요청하기'),
               ),
             ],
           ),
-          SizedBox(height: 30.0),
+          const SizedBox(height: 30.0),
         ],
       ),
     );

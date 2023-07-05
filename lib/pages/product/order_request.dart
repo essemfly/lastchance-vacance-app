@@ -69,7 +69,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
     }
 
     if (product == null) {
-      return Center(
+      return const Center(
         child: SizedBox(
           width: 50,
           height: 50,
@@ -84,7 +84,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
         appBar: AppBar(
           leading: IconButton(
             color: Constants.black600,
-            icon: Icon(Icons.arrow_back_rounded),
+            icon: const Icon(Icons.arrow_back_rounded),
             onPressed: () => Navigator.of(context).pop(),
           ),
           backgroundColor: Constants.secondaryBackground,
@@ -93,7 +93,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
             '바캉스 거래 요청',
             style: CustomTypography.subtitle2,
           ),
-          actions: [],
+          actions: const [],
           centerTitle: true,
           elevation: 0,
         ),
@@ -102,7 +102,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
             child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Container(
+            SizedBox(
               height: 200,
               width: double.infinity,
               child: Image.network(
@@ -110,7 +110,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
                 fit: BoxFit.cover,
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -118,30 +118,29 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
                   product,
                   r'''$.name''',
                 ),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                currencyFormat(getJsonField(
+                '${currencyFormat(getJsonField(
                       product,
                       r'''$.discounted_price''',
-                    )) +
-                    '원',
-                style: TextStyle(
+                    ))}원',
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
-            SizedBox(height: 30),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            const SizedBox(height: 30),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
               child: Text(
                 '구매요청 정보 입력',
                 style: TextStyle(
@@ -150,31 +149,31 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: mobileController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: '연락받으실 전화번호',
                   hintText: '010-1234-1234',
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: rewardController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: '양도사례금',
                   hintText: '통상 3000원의 양도대행비용을 받고 있습니다.',
                   border: OutlineInputBorder(),
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -210,7 +209,7 @@ class _OrderRequestWidgetState extends State<OrderRequestWidget>
                           fontWeight: FontWeight.w500,
                         ),
                         elevation: 3,
-                        borderSide: BorderSide(
+                        borderSide: const BorderSide(
                           color: Colors.transparent,
                           width: 1,
                         ),

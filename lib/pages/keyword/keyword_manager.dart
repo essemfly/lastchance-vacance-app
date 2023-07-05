@@ -89,7 +89,7 @@ class _KeywordManagerState extends State<KeywordManager> {
                     }
                   },
                   controller: textEditingController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: '알림 받을 키워드를 입력하세요',
                   ),
                 ),
@@ -103,10 +103,10 @@ class _KeywordManagerState extends State<KeywordManager> {
                     _addKeyword(text);
                     textEditingController.text = "";
                   },
-                  child: Text('추가'),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Constants.primaryColor,
-                  )),
+                  ),
+                  child: const Text('추가')),
             ),
           ],
         ),
@@ -116,7 +116,7 @@ class _KeywordManagerState extends State<KeywordManager> {
               textAlign: TextAlign.left, style: CustomTypography.subtitle2),
         ),
         SafeArea(
-            child: myKeywords.length == 0
+            child: myKeywords.isEmpty
                 ? Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
@@ -125,7 +125,7 @@ class _KeywordManagerState extends State<KeywordManager> {
                       textAlign: TextAlign.left,
                     ),
                   )
-                : Container(
+                : SizedBox(
                     height: 150,
                     child: ListView.builder(
                       itemCount: myKeywords.length,
@@ -151,7 +151,7 @@ class _KeywordManagerState extends State<KeywordManager> {
                                       _removeKeyword(getJsonField(
                                           myKeywords[index], r'''$.id'''));
                                     },
-                                    icon: Icon(Icons.delete),
+                                    icon: const Icon(Icons.delete),
                                   ),
                                 ),
                               ],

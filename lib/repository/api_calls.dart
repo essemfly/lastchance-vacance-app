@@ -18,7 +18,7 @@ class ProductsListCall {
       apiUrl: '$_baseApiUrl/api/products',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       params: {
         'page': page,
@@ -40,10 +40,10 @@ class ProductDetailCall {
     String token = await getAccessToken();
     return ApiManager.instance.makeApiCall(
       callName: 'Product Detail',
-      apiUrl: '$_baseApiUrl/api/product/${productId}',
+      apiUrl: '$_baseApiUrl/api/product/$productId',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       params: {},
       returnBody: true,
@@ -96,7 +96,7 @@ class UserDeviceCall {
       apiUrl: '$_baseApiUrl/api/user',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       body: "",
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
@@ -117,7 +117,7 @@ class UserDeviceCall {
       apiUrl: '$_baseApiUrl/api/user',
       callType: ApiCallType.PUT,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       params: {"mobile": mobile, "address": address},
       body: "",
@@ -140,7 +140,7 @@ class LikeProductCall {
       apiUrl: '$_baseApiUrl/api/user/like',
       callType: ApiCallType.POST,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       params: {"productid": productId},
       bodyType: BodyType.X_WWW_FORM_URL_ENCODED,
@@ -160,7 +160,7 @@ class ListLikeProductsCall {
       apiUrl: '$_baseApiUrl/api/user/likes',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       body: "",
       bodyType: BodyType.JSON,
@@ -180,7 +180,7 @@ class ListKeywordProductsCall {
       apiUrl: '$_baseApiUrl/api/user/keyword/products',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       body: "",
       bodyType: BodyType.JSON,
@@ -200,7 +200,7 @@ class ListKeywordsCall {
       apiUrl: '$_baseApiUrl/api/user/keywords',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       body: "",
       bodyType: BodyType.JSON,
@@ -222,7 +222,7 @@ class InsertKeywordCall {
       apiUrl: '$_baseApiUrl/api/user/keyword',
       callType: ApiCallType.POST,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       params: {
         "keyword": keyword,
@@ -247,7 +247,7 @@ class RemoveKeywordCall {
       apiUrl: '$_baseApiUrl/api/user/keyword',
       callType: ApiCallType.PUT,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       params: {
         "keywordid": keywordId,
@@ -274,7 +274,7 @@ class CreateOrderCall {
       apiUrl: '$_baseApiUrl/api/user/order',
       callType: ApiCallType.POST,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       params: {
         "productid": productid,
@@ -299,7 +299,7 @@ class ListOrdersCall {
       apiUrl: '$_baseApiUrl/api/user/orders',
       callType: ApiCallType.GET,
       headers: {
-        "Authorization": "Bearer " + token,
+        "Authorization": "Bearer $token",
       },
       body: "",
       bodyType: BodyType.JSON,

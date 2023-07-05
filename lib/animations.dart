@@ -26,11 +26,13 @@ class AnimationInfo {
 void createAnimation(AnimationInfo animation, TickerProvider vsync) {
   final newController = AnimationController(vsync: vsync);
   animation.controller = newController;
-  animation.adapter = Adapter()..init(newController);
+  animation.adapter = const Adapter()..init(newController);
 }
 
 void setupAnimations(Iterable<AnimationInfo> animations, TickerProvider vsync) {
-  animations.forEach((animation) => createAnimation(animation, vsync));
+  for (var animation in animations) {
+    createAnimation(animation, vsync);
+  }
 }
 
 extension AnimatedWidgetExtension on Widget {

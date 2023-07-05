@@ -7,10 +7,12 @@ import 'package:handover_app/pages/setting/settings_page.dart';
 
 main() async {
   await initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatefulWidget {
+  const MyApp({super.key});
+
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -18,10 +20,10 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _selectedIndex = 0;
 
-  static List<Widget> _widgetOptions = <Widget>[
-    HomePageWidget(),
-    KeywordsPageWidget(),
-    SettingsPageWidget(),
+  static final List<Widget> _widgetOptions = <Widget>[
+    const HomePageWidget(),
+    const KeywordsPageWidget(),
+    const SettingsPageWidget(),
   ];
 
   void _onItemTapped(int index) {

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:handover_app/constants.dart';
 import 'package:handover_app/pages/home/home_product_card.dart';
 import 'package:handover_app/repository/api_calls.dart';
 import 'package:handover_app/utils.dart';

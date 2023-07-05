@@ -8,7 +8,7 @@ import 'package:amplitude_flutter/amplitude.dart';
 import 'package:amplitude_flutter/identify.dart';
 import 'package:app_tracking_transparency/app_tracking_transparency.dart';
 
-final storage = new FlutterSecureStorage();
+const storage = FlutterSecureStorage();
 
 Future<void> initializeApp() async {
   timeago.setLocaleMessages('ko_KR', timeago.KoMessages());
@@ -38,7 +38,16 @@ Future initAmplitude() async {
 }
 
 void requestPermission() async {
-  await AppTrackingTransparency.requestTrackingAuthorization();
+  TrackingStatus authorizationStatus =
+      await AppTrackingTransparency.trackingAuthorizationStatus;
+  int timeoutCount = 0;
+  while (authorizationStatus == TrackingStatus.notDetermined &&
+      timeoutCount < 10) {
+    authorizationStatus =
+        await AppTrackingTransparency.requestTrackingAuthorization();
+    await Future.delayed(const Duration(milliseconds: 200));
+    timeoutCount++;
+  }
 
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 

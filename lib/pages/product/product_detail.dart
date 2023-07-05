@@ -90,7 +90,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
   @override
   Widget build(BuildContext context) {
     if (product == null) {
-      return Center(
+      return const Center(
         child: SizedBox(
           width: 50,
           height: 50,
@@ -113,7 +113,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                 mainAxisSize: MainAxisSize.max,
                 children: [
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(0, 44, 0, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -122,13 +122,13 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: 320,
                           decoration: BoxDecoration(
-                            color: Color(0xFFDBE2E7),
+                            color: const Color(0xFFDBE2E7),
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Stack(
                             children: [
                               Align(
-                                alignment: AlignmentDirectional(0, 0),
+                                alignment: const AlignmentDirectional(0, 0),
                                 child: CarouselSlider(
                                   options: CarouselOptions(
                                     autoPlay: true,
@@ -142,13 +142,13 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                     return Container(
                                       width: MediaQuery.of(context).size.width,
                                       margin:
-                                          EdgeInsets.symmetric(horizontal: 5.0),
+                                          const EdgeInsets.symmetric(horizontal: 5.0),
                                       decoration: BoxDecoration(
                                         image: DecorationImage(
                                           image: NetworkImage(url),
                                           fit: BoxFit.cover,
                                         ),
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             color: Colors.black26,
                                             offset: Offset(0.0, 1.0),
@@ -161,7 +161,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 ),
                               ),
                               Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
                                     16, 16, 16, 16),
                                 child: Column(
                                   mainAxisSize: MainAxisSize.max,
@@ -178,7 +178,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                           child: Card(
                                             clipBehavior:
                                                 Clip.antiAliasWithSaveLayer,
-                                            color: Color(0x3A000000),
+                                            color: const Color(0x3A000000),
                                             shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(8),
@@ -187,7 +187,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                               borderColor: Colors.transparent,
                                               borderRadius: 30,
                                               buttonSize: 46,
-                                              icon: Icon(
+                                              icon: const Icon(
                                                 Icons.arrow_back_rounded,
                                                 color: Colors.white,
                                                 size: 24,
@@ -210,7 +210,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -226,7 +226,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
@@ -238,7 +238,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           ).toString(),
                           style: CustomTypography.bodyText2.override(
                             fontFamily: 'Lexend Deca',
-                            color: Color(0xFF8B97A2),
+                            color: const Color(0xFF8B97A2),
                             fontSize: 12,
                             fontWeight: FontWeight.normal,
                           ),
@@ -253,17 +253,16 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 10, 24, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 10, 24, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Text(
-                            currencyFormat(getJsonField(
+                            "${currencyFormat(getJsonField(
                                   product,
                                   r'''$.discounted_price''',
-                                )) +
-                                "원",
+                                ))}원",
                             textAlign: TextAlign.start,
                             style: CustomTypography.title2,
                           ),
@@ -272,7 +271,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
+                      padding: const EdgeInsetsDirectional.fromSTEB(24, 12, 24, 0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         children: [
@@ -288,14 +287,14 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                         ],
                       )),
                   Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
+                    padding: const EdgeInsetsDirectional.fromSTEB(24, 4, 24, 0),
                     child: Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Expanded(
                           child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
+                                  const EdgeInsetsDirectional.fromSTEB(0, 0, 0, 24),
                               child: Text(
                                 getJsonField(
                                   product,
@@ -303,7 +302,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 ).toString(),
                                 style: CustomTypography.bodyText2.override(
                                   fontFamily: 'Lexend Deca',
-                                  color: Color(0xFF8B97A2),
+                                  color: const Color(0xFF8B97A2),
                                   fontSize: 14,
                                   fontWeight: FontWeight.normal,
                                 ),
@@ -318,7 +317,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
           ),
           Container(
             width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Constants.primaryText,
               boxShadow: [
                 BoxShadow(
@@ -338,7 +337,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
               mainAxisSize: MainAxisSize.max,
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 30),
+                  padding: const EdgeInsetsDirectional.fromSTEB(16, 16, 16, 30),
                   child: Row(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -360,12 +359,12 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                           },
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
                           child: FFButtonWidget(
                             onPressed: () async {
                               logPageView("Order Direct Page");
@@ -386,7 +385,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                 fontWeight: FontWeight.w500,
                               ),
                               elevation: 3,
-                              borderSide: BorderSide(
+                              borderSide: const BorderSide(
                                 color: Colors.transparent,
                                 width: 1,
                               ),
@@ -397,7 +396,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                       ),
                       Expanded(
                         child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                          padding: const EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
                           child: FFButtonWidget(
                               onPressed: () async {
                                 await Navigator.push(
@@ -424,7 +423,7 @@ class _ProductDetailsWidgetState extends State<ProductDetailsWidget>
                                   fontWeight: FontWeight.w500,
                                 ),
                                 elevation: 3,
-                                borderSide: BorderSide(
+                                borderSide: const BorderSide(
                                   color: Colors.transparent,
                                   width: 1,
                                 ),
